@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+
 // Node - estrutura
 typedef struct DLL_Node {
     uint16_t key;           // Chave - uint16
