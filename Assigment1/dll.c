@@ -1,4 +1,4 @@
-#include <stdint.h>+
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
@@ -18,7 +18,7 @@ void MyDLLInit(DLL *My_dll, uint8_t max_elements, uint8_t data_size){
     My_dll->max_elements = (max_elements > MAX_ELEMENTS) ? MAX_ELEMENTS : max_elements;
 
     for (int i = 0; i < My_dll->max_elements; i++) {
-        My_dll->nodes[i].key = NULL;
+        My_dll->nodes[i].key = 0; 
         My_dll->nodes[i].previous = NULL;
         My_dll->nodes[i].next = NULL;
         My_dll->nodes[i].data_size = data_size; 
