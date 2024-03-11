@@ -4,8 +4,14 @@
 #include <stdbool.h>
 #include "dll.h"
 
-void MyDLLInit(DLL *My_dll, uint8_t max_elements, uint8_t data_size)
-{
+/**
+* @brief Inicialização da DLL.
+* 
+* @param My_dll Ponteiro para a DLL.
+* @param max_elements Numero máximo de elementos da DLL.
+* @param data_size Tamanho dos dados de cada nó.
+*/
+void MyDLLInit(DLL *My_dll, uint8_t max_elements, uint8_t data_size){
     My_dll->head = NULL;        
     My_dll->tail = NULL;
     My_dll->nmr_elements = 0;           
@@ -20,6 +26,15 @@ void MyDLLInit(DLL *My_dll, uint8_t max_elements, uint8_t data_size)
 
 }
 
+/**
+* @brief Inserção de um elemento na DLL. 
+* 
+* @param My_dll Ponteiro para a DLL.
+* @param key Chave - Identificadora de um elemento.
+* @param data Dados do elemento a inserir.
+*
+* @return Retorna true se o elemento for inserido com sucesso, e retorna false caso não seja.
+*/
 bool MyDLLInsert(DLL *My_dll, uint16_t key, unsigned char *data) {
     // Verifica se a DLL está cheia
     if(My_dll->nmr_elements >= My_dll->max_elements){
@@ -30,6 +45,19 @@ bool MyDLLInsert(DLL *My_dll, uint16_t key, unsigned char *data) {
     if(key > UINT16_MAX){
         return false;  
     }
+    
+    // Verificar que a key é única
+    DLL_Node *Node_key = My_dll->head;
+    while (Node_key != NULL)
+    {
+        if (Node_key->key == key)
+        {
+            return false;       // Quer dizer que a key já existe e não é única.
+        }
+        Node_key = Node_key->next;
+    }
+    
+
 
     // Ultimo nó da lista
     DLL_Node *New_node = &My_dll->nodes[My_dll->nmr_elements];
@@ -57,7 +85,14 @@ bool MyDLLInsert(DLL *My_dll, uint16_t key, unsigned char *data) {
     return true;
 }
 
-
+/**
+* @brief Remoção de um elemento na DLL
+* 
+* @param My_dll Ponteiro para a DLL
+* @param key Identifica o elemento a remover
+*
+* @return Retorna true se o elemento for removido com sucesso, e retorna false caso não seja.
+*/
 bool MyDLLRemove(DLL *My_dll, uint16_t key){
     DLL_Node *current_Node = My_dll->head;     // Aponta o "Nó atual" para o inicio da DLL
 
@@ -95,6 +130,7 @@ bool MyDLLRemove(DLL *My_dll, uint16_t key){
     }
     return false;   // Key nao encontrada, return false.
 }
+
 
 
 

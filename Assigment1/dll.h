@@ -1,3 +1,8 @@
+/**
+* @file dll.h
+* @brief Doubly Linked List (DLL)
+*/
+
 #include <stdint.h>
 #include <stdlib.h> 
 #include <string.h>
@@ -7,7 +12,9 @@
 #define MAX_DATA_SIZE 50           // Tamanho maximo de dados de cada nó          
 
 
-// Node - estrutura
+/**
+* @brief Estrutura de um nó da DLL
+*/
 typedef struct DLL_Node {
     uint16_t key;  
     uint16_t data_size;               // tamanho do array de dados       
@@ -17,7 +24,9 @@ typedef struct DLL_Node {
     
 }DLL_Node;
 
-//DLL - estrutura
+/**
+* @brief Estrutura da DLL
+*/
 typedef struct DLL{
     DLL_Node nodes[MAX_ELEMENTS];
     DLL_Node *head;         // Representa o primeiro nó da lista (cabeça)
@@ -26,7 +35,9 @@ typedef struct DLL{
     uint16_t max_elements;  // Numero máximo de elementos da lista
 }DLL;
 
-// Headers das funções
+/**
+* @brief Headers das funções
+*/
 void MyDLLInit(DLL *My_dll, uint8_t max_elements, uint8_t data_size ) ;
 
 bool MyDLLInsert(DLL *My_dll, uint16_t key, unsigned char *data);
