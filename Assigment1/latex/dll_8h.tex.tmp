@@ -1,0 +1,201 @@
+\hypertarget{dll_8h}{}\doxysection{dll.\+h File Reference}
+\label{dll_8h}\index{dll.h@{dll.h}}
+
+
+Doubly Linked List (\mbox{\hyperlink{structDLL}{D\+LL}})  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for dll.\+h\+:
+% FIG 0
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDLL__Node}{D\+L\+L\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Estrutura de um nó da \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structDLL}{D\+LL}}
+\begin{DoxyCompactList}\small\item\em Estrutura da \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{dll_8h_af124795c150434ff274e1572bee8eba9}\label{dll_8h_af124795c150434ff274e1572bee8eba9}} 
+\#define {\bfseries M\+A\+X\+\_\+\+E\+L\+E\+M\+E\+N\+TS}~30
+\item 
+\mbox{\Hypertarget{dll_8h_a87f68e96fb938eddc39ad1f19d923a96}\label{dll_8h_a87f68e96fb938eddc39ad1f19d923a96}} 
+\#define {\bfseries M\+A\+X\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~50
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{dll_8h_a055fb4e8f6e8b0720c652eec2710cf51}\label{dll_8h_a055fb4e8f6e8b0720c652eec2710cf51}} 
+typedef struct \mbox{\hyperlink{structDLL__Node}{D\+L\+L\+\_\+\+Node}} \mbox{\hyperlink{dll_8h_a055fb4e8f6e8b0720c652eec2710cf51}{D\+L\+L\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Estrutura de um nó da \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{dll_8h_acaa2e2cb1645343129b35e4ce2e3f186}\label{dll_8h_acaa2e2cb1645343129b35e4ce2e3f186}} 
+typedef struct \mbox{\hyperlink{structDLL}{D\+LL}} \mbox{\hyperlink{dll_8h_acaa2e2cb1645343129b35e4ce2e3f186}{D\+LL}}
+\begin{DoxyCompactList}\small\item\em Estrutura da \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dll_8h_ae0418afb2699e7d7e44652142bc66e01}{My\+D\+L\+L\+Init}} (\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$My\+\_\+dll, uint8\+\_\+t max\+\_\+elements, uint8\+\_\+t data\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Headers das funções. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{dll_8h_ac2981e14ec3a95e0c145bc0e6a7c9db7}{My\+D\+L\+L\+Insert}} (\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$My\+\_\+dll, uint16\+\_\+t key, unsigned char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Inserção de um elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{dll_8h_a43b8f0f260aa80ace011c0ca4f2eeeb2}{My\+D\+L\+L\+Remove}} (\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$My\+\_\+dll, uint16\+\_\+t key)
+\begin{DoxyCompactList}\small\item\em Remoção de um elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\item 
+unsigned char $\ast$ \mbox{\hyperlink{dll_8h_a9440748119261e3d424e1f4cd403ff22}{My\+D\+L\+L\+Find}} (\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$My\+\_\+dll, uint16\+\_\+t key)
+\begin{DoxyCompactList}\small\item\em Encontra um elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\item 
+unsigned char $\ast$ \mbox{\hyperlink{dll_8h_a433100605bf529709ac527b9c523a471}{My\+D\+L\+L\+Find\+\_\+\+Next}} (\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$My\+\_\+dll, \mbox{\hyperlink{structDLL__Node}{D\+L\+L\+\_\+\+Node}} $\ast$current\+\_\+\+Node)
+\begin{DoxyCompactList}\small\item\em Encontra o próximo elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\item 
+unsigned char $\ast$ \mbox{\hyperlink{dll_8h_aa555185df1bd0f5b01986b02423b2c4c}{My\+D\+L\+L\+Find\+\_\+\+Previous}} (\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$My\+\_\+dll, \mbox{\hyperlink{structDLL__Node}{D\+L\+L\+\_\+\+Node}} $\ast$current\+\_\+\+Node)
+\begin{DoxyCompactList}\small\item\em Encontra o elemento anterior na \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dll_8h_acaa62d9986934e7e61e5a849c10b3efa}{My\+D\+L\+L\+Print}} (\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$My\+\_\+dll)
+\begin{DoxyCompactList}\small\item\em Lista os elementos da \mbox{\hyperlink{structDLL}{D\+LL}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Doubly Linked List (\mbox{\hyperlink{structDLL}{D\+LL}}) 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{dll_8h_a9440748119261e3d424e1f4cd403ff22}\label{dll_8h_a9440748119261e3d424e1f4cd403ff22}} 
+\index{dll.h@{dll.h}!MyDLLFind@{MyDLLFind}}
+\index{MyDLLFind@{MyDLLFind}!dll.h@{dll.h}}
+\doxysubsubsection{\texorpdfstring{MyDLLFind()}{MyDLLFind()}}
+{\footnotesize\ttfamily unsigned char$\ast$ My\+D\+L\+L\+Find (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$}]{My\+\_\+dll,  }\item[{uint16\+\_\+t}]{key }\end{DoxyParamCaption})}
+
+
+
+Encontra um elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em My\+\_\+dll} & Ponteiro para a \mbox{\hyperlink{structDLL}{D\+LL}} \\
+\hline
+{\em key} & Identifica o elemento que se pretende encontrar\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna um ponteiro para os dados do elemento encontrado, e caso não seja encontrado, retorna N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dll_8h_a433100605bf529709ac527b9c523a471}\label{dll_8h_a433100605bf529709ac527b9c523a471}} 
+\index{dll.h@{dll.h}!MyDLLFind\_Next@{MyDLLFind\_Next}}
+\index{MyDLLFind\_Next@{MyDLLFind\_Next}!dll.h@{dll.h}}
+\doxysubsubsection{\texorpdfstring{MyDLLFind\_Next()}{MyDLLFind\_Next()}}
+{\footnotesize\ttfamily unsigned char$\ast$ My\+D\+L\+L\+Find\+\_\+\+Next (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$}]{My\+\_\+dll,  }\item[{\mbox{\hyperlink{structDLL__Node}{D\+L\+L\+\_\+\+Node}} $\ast$}]{current\+\_\+\+Node }\end{DoxyParamCaption})}
+
+
+
+Encontra o próximo elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em My\+\_\+dll} & Ponteiro para a \mbox{\hyperlink{structDLL}{D\+LL}}. \\
+\hline
+{\em current\+\_\+\+Node} & Ponteiro para o nó atual da \mbox{\hyperlink{structDLL}{D\+LL}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna um ponteiro para os dados do próximo elemento, e caso não exista próximo retorna N\+U\+LL. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dll_8h_aa555185df1bd0f5b01986b02423b2c4c}\label{dll_8h_aa555185df1bd0f5b01986b02423b2c4c}} 
+\index{dll.h@{dll.h}!MyDLLFind\_Previous@{MyDLLFind\_Previous}}
+\index{MyDLLFind\_Previous@{MyDLLFind\_Previous}!dll.h@{dll.h}}
+\doxysubsubsection{\texorpdfstring{MyDLLFind\_Previous()}{MyDLLFind\_Previous()}}
+{\footnotesize\ttfamily unsigned char$\ast$ My\+D\+L\+L\+Find\+\_\+\+Previous (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$}]{My\+\_\+dll,  }\item[{\mbox{\hyperlink{structDLL__Node}{D\+L\+L\+\_\+\+Node}} $\ast$}]{current\+\_\+\+Node }\end{DoxyParamCaption})}
+
+
+
+Encontra o elemento anterior na \mbox{\hyperlink{structDLL}{D\+LL}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em My\+\_\+dll} & Ponteiro para a \mbox{\hyperlink{structDLL}{D\+LL}}. \\
+\hline
+{\em current\+\_\+\+Node} & Ponteiro para o nó atual da \mbox{\hyperlink{structDLL}{D\+LL}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna um ponteiro para os dados do elemento anterior, e caso não exista retorna N\+U\+LL. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dll_8h_ae0418afb2699e7d7e44652142bc66e01}\label{dll_8h_ae0418afb2699e7d7e44652142bc66e01}} 
+\index{dll.h@{dll.h}!MyDLLInit@{MyDLLInit}}
+\index{MyDLLInit@{MyDLLInit}!dll.h@{dll.h}}
+\doxysubsubsection{\texorpdfstring{MyDLLInit()}{MyDLLInit()}}
+{\footnotesize\ttfamily void My\+D\+L\+L\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$}]{My\+\_\+dll,  }\item[{uint8\+\_\+t}]{max\+\_\+elements,  }\item[{uint8\+\_\+t}]{data\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Headers das funções. 
+
+Headers das funções.
+
+
+\begin{DoxyParams}{Parameters}
+{\em My\+\_\+dll} & Ponteiro para a \mbox{\hyperlink{structDLL}{D\+LL}}. \\
+\hline
+{\em max\+\_\+elements} & Numero máximo de elementos da \mbox{\hyperlink{structDLL}{D\+LL}}. \\
+\hline
+{\em data\+\_\+size} & Tamanho dos dados de cada nó. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dll_8h_ac2981e14ec3a95e0c145bc0e6a7c9db7}\label{dll_8h_ac2981e14ec3a95e0c145bc0e6a7c9db7}} 
+\index{dll.h@{dll.h}!MyDLLInsert@{MyDLLInsert}}
+\index{MyDLLInsert@{MyDLLInsert}!dll.h@{dll.h}}
+\doxysubsubsection{\texorpdfstring{MyDLLInsert()}{MyDLLInsert()}}
+{\footnotesize\ttfamily bool My\+D\+L\+L\+Insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$}]{My\+\_\+dll,  }\item[{uint16\+\_\+t}]{key,  }\item[{unsigned char $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Inserção de um elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em My\+\_\+dll} & Ponteiro para a \mbox{\hyperlink{structDLL}{D\+LL}}. \\
+\hline
+{\em key} & Chave -\/ Identificadora de um elemento. \\
+\hline
+{\em data} & Dados do elemento a inserir.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna true se o elemento for inserido com sucesso, e retorna false caso não seja. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{dll_8h_acaa62d9986934e7e61e5a849c10b3efa}\label{dll_8h_acaa62d9986934e7e61e5a849c10b3efa}} 
+\index{dll.h@{dll.h}!MyDLLPrint@{MyDLLPrint}}
+\index{MyDLLPrint@{MyDLLPrint}!dll.h@{dll.h}}
+\doxysubsubsection{\texorpdfstring{MyDLLPrint()}{MyDLLPrint()}}
+{\footnotesize\ttfamily void My\+D\+L\+L\+Print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$}]{My\+\_\+dll }\end{DoxyParamCaption})}
+
+
+
+Lista os elementos da \mbox{\hyperlink{structDLL}{D\+LL}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em My\+\_\+dll} & Ponteiro para a \mbox{\hyperlink{structDLL}{D\+LL}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{dll_8h_a43b8f0f260aa80ace011c0ca4f2eeeb2}\label{dll_8h_a43b8f0f260aa80ace011c0ca4f2eeeb2}} 
+\index{dll.h@{dll.h}!MyDLLRemove@{MyDLLRemove}}
+\index{MyDLLRemove@{MyDLLRemove}!dll.h@{dll.h}}
+\doxysubsubsection{\texorpdfstring{MyDLLRemove()}{MyDLLRemove()}}
+{\footnotesize\ttfamily bool My\+D\+L\+L\+Remove (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDLL}{D\+LL}} $\ast$}]{My\+\_\+dll,  }\item[{uint16\+\_\+t}]{key }\end{DoxyParamCaption})}
+
+
+
+Remoção de um elemento na \mbox{\hyperlink{structDLL}{D\+LL}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em My\+\_\+dll} & Ponteiro para a \mbox{\hyperlink{structDLL}{D\+LL}} \\
+\hline
+{\em key} & Identifica o elemento a remover\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Retorna true se o elemento for removido com sucesso, e retorna false caso não seja. 
+\end{DoxyReturn}

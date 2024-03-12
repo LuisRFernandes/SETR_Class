@@ -9,7 +9,7 @@
 #include <stdbool.h>
 
 #define MAX_ELEMENTS 30            // Numero maximo de elementos da dll
-#define MAX_DATA_SIZE 50           // Tamanho maximo de dados de cada nó          
+#define MAX_DATA_SIZE 100           // Tamanho maximo de dados de cada nó          
 
 
 /**
@@ -50,4 +50,5 @@ unsigned char *MyDLLFind_Next(DLL *My_dll, DLL_Node *current_Node);
 
 unsigned char *MyDLLFind_Previous(DLL *My_dll, DLL_Node *current_Node);
 
+void MyDLLPrint (DLL *My_dll);
 

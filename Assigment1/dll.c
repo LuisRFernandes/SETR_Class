@@ -180,3 +180,18 @@ unsigned char* MyDLLFind_Previous(DLL *My_dll, DLL_Node *current_Node){
     }   
     return current_Node->previous->data;
 }
+
+/**
+* @brief Lista os elementos da DLL.
+* 
+* @param My_dll Ponteiro para a DLL.
+*/
+void MyDLLPrint (DLL *My_dll){
+    DLL_Node *current_Node = My_dll->head;
+    while (current_Node != NULL)
+    {
+        printf("Key: %u  : ", current_Node->key);
+        printf("Data: %s\n",current_Node->data);
+        current_Node = current_Node->next;
+    }
+}
