@@ -11,6 +11,10 @@
 #define MAX_ELEMENTS 30            // Numero maximo de elementos da dll
 #define MAX_DATA_SIZE 100           // Tamanho maximo de dados de cada nó          
 
+// Definir variaveis de erro : recomendação do professor
+#define OK 0            // Variavel de sucesso
+#define EMPTY_LIST -1   // 
+#define LIST_FULL        
 
 /**
 * @brief Estrutura de um nó da DLL
@@ -46,9 +50,9 @@ bool MyDLLRemove(DLL *My_dll, uint16_t key);
 
 unsigned char *MyDLLFind(DLL *My_dll, uint16_t key);
 
-unsigned char *MyDLLFind_Next(DLL *My_dll, DLL_Node *current_Node);
+unsigned char *MyDLLFind_Next(DLL *My_dll, uint16_t key);
 
-unsigned char *MyDLLFind_Previous(DLL *My_dll, DLL_Node *current_Node);
+unsigned char *MyDLLFind_Previous(DLL *My_dll, uint16_t key);
 
-void MyDLLPrint (DLL *My_dll);
+bool MyDLLPrint (DLL *My_dll);
 
