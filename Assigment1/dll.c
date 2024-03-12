@@ -131,6 +131,52 @@ bool MyDLLRemove(DLL *My_dll, uint16_t key){
     return false;   // Key nao encontrada, return false.
 }
 
+/**
+* @brief Encontra um elemento na DLL
+* @param My_dll Ponteiro para a DLL
+* @param key Identifica o elemento que se pretende encontrar
+*
+* @return Retorna um ponteiro para os dados do elemento encontrado, e caso não seja encontrado, retorna NULL
+*/
+unsigned char *MyDLLFind(DLL *My_dll, uint16_t key){
+    DLL_Node *current_Node = My_dll->head; //Aponta para o início da DLL
+    unsigned char *result = NULL;              //Variável para guardar o resultado da pesquisa
+    while(current_Node != NULL){ //Percorre todos os nós da lista
+        if (current_Node->key == key){ //Caso a chave seja encontrada
+            result = current_Node->data;
+            break;
+        }
+        current_Node = current_Node->next; // Se a chave não corresponder à chave daquele nó, passado ao próximo nó
+    }
+    return result;
+}
 
+/**
+* @brief Encontra o próximo elemento na DLL.
+* 
+* @param My_dll Ponteiro para a DLL.
+* @param current_Node Ponteiro para o nó atual da DLL.
+*
+* @return Retorna um ponteiro para os dados do próximo elemento, e caso não exista próximo retorna NULL.
+*/
+unsigned char* MyDLLFind_Next(DLL *My_dll, DLL_Node *current_Node){
+    if(current_Node == NULL || current_Node->next == NULL){
+        return NULL;  
+    }   
+    return current_Node->next->data;
+}
 
-
+/**
+* @brief Encontra o elemento anterior na DLL.
+* 
+* @param My_dll Ponteiro para a DLL.
+* @param current_Node Ponteiro para o nó atual da DLL.
+*
+* @return Retorna um ponteiro para os dados do elemento anterior, e caso não exista retorna NULL.
+*/
+unsigned char* MyDLLFind_Previous(DLL *My_dll, DLL_Node *current_Node){
+    if(current_Node == NULL || current_Node->previous == NULL){
+        return NULL;  
+    }   
+    return current_Node->previous->data;
+}
