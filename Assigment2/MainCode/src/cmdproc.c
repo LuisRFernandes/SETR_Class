@@ -45,10 +45,10 @@ int cmdProcessor(void)
 	unsigned char sid;
 	unsigned char cmdData[UART_RX_SIZE];
 	int cmdDataLen = 0;
-	unsigned char sensorValues[UART_RX_SIZE]; // Moved declaration
-    int sensorValuesLen; // Moved declaration
-    unsigned char lastSamples[UART_RX_SIZE]; // Moved declaration
-    int lastSamplesLen; // Moved declaration
+	unsigned char sensorValues[UART_RX_SIZE]; 
+    int sensorValuesLen; 
+    unsigned char lastSamples[UART_RX_SIZE]; 
+    int lastSamplesLen; 
 	unsigned char sensorValue[UART_RX_SIZE];
 	int sensorValueLen;
 		
@@ -125,9 +125,7 @@ int cmdProcessor(void)
 
 									
 				case 'L': // Returns the last 20 samples of each variable
-					//unsigned char lastSamples[UART_RX_SIZE];
-					//int lastSamplesLen;
-
+				
 					// Código para  obter os últimos 20 samples de cada sensor.
 
 					// Copiar as últimas 20 amostras para lastSamples
@@ -171,7 +169,6 @@ int cmdProcessor(void)
 	
 	/* Cmd string not null and SOF not found */
 	return -4;
-
 }
 
 /**
