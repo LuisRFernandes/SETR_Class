@@ -84,7 +84,7 @@ int main(void)
 	
 	err=cmdProcessor();
 		
-	if(err == -2) {
+	if(err == CMD_NOT_FOUND) {
 		printf("Test 2 succeeded, as omission was detected\n");
 	} else {
 		printf("Test 2 failed, as omission was not detected\n");
