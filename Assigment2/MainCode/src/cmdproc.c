@@ -91,6 +91,10 @@ int cmdProcessor(void)
 
 				case 'P':	// Reads the real-time value of one of the sensors
 
+					if (i + 2 >= rxBufLen) {
+        				return CMD_NOT_FOUND; // Comando incompleto
+    				}
+					
 					sid = UARTRxBuffer[i+2]; // Tipo de sensor
 					if (sid != 't' && sid != 'h' && sid != 'c') {
 						return CMD_NOT_FOUND; // Tipo de sensor inválido
