@@ -7,7 +7,7 @@ digraph "MainCode/src/cmdproc.h"
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="MainCode/src/cmdproc.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$cmdproc_8c.html",tooltip=" "];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="MainCode/test/testcmdproc.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$testcmdproc_8c.html",tooltip=" "];
+  Node3 [label="MainCode/test/testcmdproc.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$testcmdproc_8c.html",tooltip="Testes usando Unit Testing para o cmd_processor."];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="MainCode/src/main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html",tooltip=" "];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

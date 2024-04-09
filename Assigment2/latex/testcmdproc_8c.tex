@@ -1,5 +1,10 @@
 \hypertarget{testcmdproc_8c}{}\doxysection{Main\+Code/test/testcmdproc.c File Reference}
 \label{testcmdproc_8c}\index{MainCode/test/testcmdproc.c@{MainCode/test/testcmdproc.c}}
+
+
+Testes usando Unit Testing para o cmd\+\_\+processor.  
+
+
 {\ttfamily \#include \char`\"{}unity.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}cmdproc.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}cmdproc.\+c\char`\"{}}\newline
@@ -13,22 +18,27 @@ void \mbox{\hyperlink{testcmdproc_8c_a95c834d6178047ce9e1bce7cbfea2836}{set\+Up}
 void \mbox{\hyperlink{testcmdproc_8c_a9909011e5fea0c018842eec4d93d0662}{tear\+Down}} (void)
 \item 
 void \mbox{\hyperlink{testcmdproc_8c_a0b51b2d9e172169e0581ddd0250b9cf7}{test\+\_\+\+Empty\+String}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Teste para verificar a omissão de dados recebidos. (String vazia) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{testcmdproc_8c_a04b7ee5e267db23b396793defd14c6da}{test\+\_\+wrong\+C\+MD}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Teste para verificar o processamento de um comando inválido. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{testcmdproc_8c_a71426b673f7cf2fa182383a07b4b9237}{test\+\_\+sensor}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Teste para verificar o processamento de um comando de sensor válido. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{testcmdproc_8c_afc066b757a65d46d87462b9fa4bbc5e9}{test\+\_\+calc\+Checksum}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Teste para verificar o cálculo do checksum. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{testcmdproc_8c_a04f03ca8e850b6c0d6dfaab4ba623427}{test\+\_\+string\+\_\+format}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Teste que faz a verificação do processamento de um comando com formato de string errado. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{testcmdproc_8c_a798c0cf17d38845ac147f02f9dff50e0}{test\+\_\+emulate\+Sensor}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Teste para verificar se a emulação do sensor produz algum valor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{testcmdproc_8c_ae575a94e43c024e3ecba7ddee12fdecb}{test\+\_\+processamento\+\_\+comando\+\_\+A}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Teste para verificar se o E\+OF, cmd e E\+OF são enviados corretamente. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{testcmdproc_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Testes usando Unit Testing para o cmd\+\_\+processor. 
+
+Este ficheiro contém testes feitos ao cmd\+\_\+processor para detetar possiveis erros de transmissão de dados, como por exemplo o envio de dados vazios ou com comprimento errado. Os testes são feitos com recurso à biblioteca Unity. 
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{testcmdproc_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{testcmdproc_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
@@ -55,23 +65,39 @@ int \mbox{\hyperlink{testcmdproc_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (v
 \doxysubsubsection{\texorpdfstring{test\_calcChecksum()}{test\_calcChecksum()}}
 {\footnotesize\ttfamily void test\+\_\+calc\+Checksum (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{testcmdproc_8c_a0b51b2d9e172169e0581ddd0250b9cf7}\label{testcmdproc_8c_a0b51b2d9e172169e0581ddd0250b9cf7}} 
+
+
+Teste para verificar o cálculo do checksum. 
+
+Este teste verifica se o cálculo do checksum está funcionando corretamente. São simuladas 2 tramas diferentes e se o valor produzido por elas for diferente, retorna uma mensagem de erro. \mbox{\Hypertarget{testcmdproc_8c_a0b51b2d9e172169e0581ddd0250b9cf7}\label{testcmdproc_8c_a0b51b2d9e172169e0581ddd0250b9cf7}} 
 \index{testcmdproc.c@{testcmdproc.c}!test\_EmptyString@{test\_EmptyString}}
 \index{test\_EmptyString@{test\_EmptyString}!testcmdproc.c@{testcmdproc.c}}
 \doxysubsubsection{\texorpdfstring{test\_EmptyString()}{test\_EmptyString()}}
 {\footnotesize\ttfamily void test\+\_\+\+Empty\+String (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{testcmdproc_8c_a798c0cf17d38845ac147f02f9dff50e0}\label{testcmdproc_8c_a798c0cf17d38845ac147f02f9dff50e0}} 
+
+
+Teste para verificar a omissão de dados recebidos. (String vazia) 
+
+Caso não seja recebido nada, o sistema devolve uma mensagem de erro relativa à string vazia. \mbox{\Hypertarget{testcmdproc_8c_a798c0cf17d38845ac147f02f9dff50e0}\label{testcmdproc_8c_a798c0cf17d38845ac147f02f9dff50e0}} 
 \index{testcmdproc.c@{testcmdproc.c}!test\_emulateSensor@{test\_emulateSensor}}
 \index{test\_emulateSensor@{test\_emulateSensor}!testcmdproc.c@{testcmdproc.c}}
 \doxysubsubsection{\texorpdfstring{test\_emulateSensor()}{test\_emulateSensor()}}
 {\footnotesize\ttfamily void test\+\_\+emulate\+Sensor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{testcmdproc_8c_ae575a94e43c024e3ecba7ddee12fdecb}\label{testcmdproc_8c_ae575a94e43c024e3ecba7ddee12fdecb}} 
+
+
+Teste para verificar se a emulação do sensor produz algum valor. 
+
+Neste teste apenas se verifica se o tamanho do valor produzido pelo sensor é maior que 0, o que implica que foi emulado um valor. \mbox{\Hypertarget{testcmdproc_8c_ae575a94e43c024e3ecba7ddee12fdecb}\label{testcmdproc_8c_ae575a94e43c024e3ecba7ddee12fdecb}} 
 \index{testcmdproc.c@{testcmdproc.c}!test\_processamento\_comando\_A@{test\_processamento\_comando\_A}}
 \index{test\_processamento\_comando\_A@{test\_processamento\_comando\_A}!testcmdproc.c@{testcmdproc.c}}
 \doxysubsubsection{\texorpdfstring{test\_processamento\_comando\_A()}{test\_processamento\_comando\_A()}}
 {\footnotesize\ttfamily void test\+\_\+processamento\+\_\+comando\+\_\+A (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Teste para verificar se o E\+OF, cmd e E\+OF são enviados corretamente. 
 
 \mbox{\Hypertarget{testcmdproc_8c_a71426b673f7cf2fa182383a07b4b9237}\label{testcmdproc_8c_a71426b673f7cf2fa182383a07b4b9237}} 
 \index{testcmdproc.c@{testcmdproc.c}!test\_sensor@{test\_sensor}}
@@ -79,15 +105,34 @@ int \mbox{\hyperlink{testcmdproc_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (v
 \doxysubsubsection{\texorpdfstring{test\_sensor()}{test\_sensor()}}
 {\footnotesize\ttfamily void test\+\_\+sensor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{testcmdproc_8c_a04f03ca8e850b6c0d6dfaab4ba623427}\label{testcmdproc_8c_a04f03ca8e850b6c0d6dfaab4ba623427}} 
+
+
+Teste para verificar o processamento de um comando de sensor válido. 
+
+Caso o comando recebido não seja válido, o sistema devolve uma mensagem de erro que sinaliza esse acontecimento.
+
+Neste teste em particular foi testado o envio do comando \textquotesingle{}x\textquotesingle{} que não corresponde a nenhum sensor válido. \mbox{\Hypertarget{testcmdproc_8c_a04f03ca8e850b6c0d6dfaab4ba623427}\label{testcmdproc_8c_a04f03ca8e850b6c0d6dfaab4ba623427}} 
 \index{testcmdproc.c@{testcmdproc.c}!test\_string\_format@{test\_string\_format}}
 \index{test\_string\_format@{test\_string\_format}!testcmdproc.c@{testcmdproc.c}}
 \doxysubsubsection{\texorpdfstring{test\_string\_format()}{test\_string\_format()}}
 {\footnotesize\ttfamily void test\+\_\+string\+\_\+format (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{testcmdproc_8c_a04b7ee5e267db23b396793defd14c6da}\label{testcmdproc_8c_a04b7ee5e267db23b396793defd14c6da}} 
+
+
+Teste que faz a verificação do processamento de um comando com formato de string errado. 
+
+Caso o formato da string não seja válida, o sistema devolve uma mensagem de erro que sinaliza esse acontecimento.
+
+Neste teste em particular omitiu-\/se o envio do caracter que representa o E\+OF (!). \mbox{\Hypertarget{testcmdproc_8c_a04b7ee5e267db23b396793defd14c6da}\label{testcmdproc_8c_a04b7ee5e267db23b396793defd14c6da}} 
 \index{testcmdproc.c@{testcmdproc.c}!test\_wrongCMD@{test\_wrongCMD}}
 \index{test\_wrongCMD@{test\_wrongCMD}!testcmdproc.c@{testcmdproc.c}}
 \doxysubsubsection{\texorpdfstring{test\_wrongCMD()}{test\_wrongCMD()}}
 {\footnotesize\ttfamily void test\+\_\+wrong\+C\+MD (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
+
+
+Teste para verificar o processamento de um comando inválido. 
+
+Caso o comando recebido não seja válido, o sistema devolve uma mensagem de erro que sinaliza esse acontecimento.
+
+Neste teste em particular foi testado o envio do comando \textquotesingle{}B\textquotesingle{} que é considerado inválido pelo sistema. 

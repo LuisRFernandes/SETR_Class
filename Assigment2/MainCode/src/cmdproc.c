@@ -47,8 +47,6 @@ int cmdProcessor(void)
 	int cmdDataLen = 0;
 	unsigned char sensorValues[UART_RX_SIZE]; 
     int sensorValuesLen; 
-    unsigned char lastSamples[UART_RX_SIZE]; 
-    int lastSamplesLen = 0;
 	unsigned char sensorValue[UART_RX_SIZE];
 	int sensorValueLen;
 		
@@ -138,13 +136,12 @@ int cmdProcessor(void)
 
 
 									
-				case 'L': 
-					// Não implementado
+				case 'L': // Não implementado
 				
-                case 'R': 
-					// Não implementado
+                case 'R': // Não implementado
 
-                    sensorCounter = 0;
+                default:
+                    return CMD_NOT_FOUND; // Unrecognized command
             }	
 			
 		}

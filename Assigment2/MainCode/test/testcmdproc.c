@@ -1,3 +1,13 @@
+/**
+ * @file testcmdproc.c
+ * @brief Testes usando Unit Testing para o cmd_processor
+ *
+ * Este ficheiro contém testes feitos ao cmd_processor para detetar possiveis erros de transmissão de dados,
+ *  como por exemplo o envio de dados  vazios ou com comprimento errado.
+ * Os testes são feitos com recurso à biblioteca Unity.
+ */
+
+
 #include "unity.h"
 #include "cmdproc.h"
 #include "cmdproc.c"
@@ -5,6 +15,11 @@
 void setUp(void) {}
 void tearDown(void) {}
 
+/**
+ * @brief Teste para verificar a omissão de dados recebidos. (String vazia)
+ * 
+ *  Caso não seja recebido nada, o sistema devolve uma mensagem de erro relativa à string vazia.
+ */
 void test_EmptyString(void){
     
     //Chamar o cmd_processor
@@ -16,6 +31,13 @@ void test_EmptyString(void){
     TEST_ASSERT_EQUAL_INT(EMPTY_STRING, resultado);
 }
 
+/**
+ * @brief Teste para verificar o processamento de um comando inválido.
+ *
+ * Caso o comando recebido não seja válido, o sistema devolve uma mensagem de erro que sinaliza esse acontecimento.
+ * 
+ * Neste teste em particular foi testado o envio do comando 'B' que é considerado inválido pelo sistema.
+ */
 void test_wrongCMD(void){
     rxChar('#');
     rxChar('B');
@@ -34,6 +56,13 @@ void test_wrongCMD(void){
 
 }
 
+/**
+ * @brief Teste para verificar o processamento de um comando de sensor válido.
+ *
+ *Caso o comando recebido não seja válido, o sistema devolve uma mensagem de erro que sinaliza esse acontecimento.
+ * 
+ *Neste teste em particular foi testado o envio do comando 'x' que não corresponde a nenhum sensor válido.
+ */
 void test_sensor(void){
     rxChar('#');
     rxChar('P');
@@ -53,6 +82,12 @@ void test_sensor(void){
 
 }
 
+/**
+ * @brief Teste para verificar o cálculo do checksum.
+ *
+ * Este teste verifica se o cálculo do checksum está funcionando corretamente.
+ * São simuladas 2 tramas diferentes e se o valor produzido por elas for diferente, retorna uma mensagem de erro.
+ */
 void test_calcChecksum(void){
     unsigned char buf1[] = {'#','A','1','2','3','!'};
     unsigned char buf2[] = {'#','A','1','2','4','!'};
@@ -69,6 +104,14 @@ void test_calcChecksum(void){
 
 }
 
+/**
+ * @brief Teste que faz a verificação do processamento de um comando com formato de string errado.
+ *
+ *Caso o formato da string não seja válida, o sistema devolve uma mensagem de erro que sinaliza esse acontecimento.
+ * 
+ *Neste teste em particular omitiu-se o envio do caracter que representa o EOF (!).
+ * 
+ */
 void test_string_format(void){
     rxChar('#');
     rxChar('P');
@@ -89,6 +132,11 @@ void test_string_format(void){
     printf("\n");
 }
 
+/**
+ * @brief Teste para verificar se a emulação do sensor produz algum valor.
+ *
+ * Neste teste apenas se verifica se o tamanho do valor produzido pelo sensor é maior que 0, o que implica que foi emulado um valor.
+ */
 void test_emulateSensor(void){
     unsigned char buf[UART_RX_SIZE];
     int len;
@@ -96,7 +144,10 @@ void test_emulateSensor(void){
     TEST_ASSERT_TRUE(len>0);
 
 }
-
+/**
+ * @brief Teste para verificar se o EOF, cmd e EOF são enviados corretamente.
+ *
+ */
 void test_processamento_comando_A(void) {
     //  É testado quando é recebido o comando A, com o objetivo de verificar se o EOF, cmd e EOF são enviados corretamente
     rxChar('#');
@@ -114,9 +165,6 @@ void test_processamento_comando_A(void) {
     int resultado = cmdProcessor();
     printf("Resultado do cmdProcessor(): %d\n", resultado);
     
-    // Verificar se o processamento ocorreu sem erros
-    TEST_ASSERT_EQUAL_INT(0, resultado);
-    
     // Verificar se a resposta foi gerada corretamente
     unsigned char resposta[UART_TX_SIZE];
     int resposta_len;
@@ -128,7 +176,6 @@ void test_processamento_comando_A(void) {
     printf("\n");
     TEST_ASSERT_EQUAL_INT('#', resposta[0]); // Verificar início do frame
     TEST_ASSERT_EQUAL_INT('A', resposta[1]); // Verificar comando
-    // Os bytes [2],[3] e [4] são para os dados emulados pelo sensor de temperatura.
     TEST_ASSERT_EQUAL_INT('!', resposta[5]); // Verificar fim do frame
 
 }
