@@ -21,12 +21,14 @@
 #define SOF_SYM '#'	        /**< Símbolo que representa o início do comando. */
 #define EOF_SYM '!'          /**< Símbolo que representa o fim do comando. */
 
+#define SUCCESS 0 
 /* Códigos de erro */
 #define EMPTY_STRING -1     /**< String vazia ou incompleta. */
 #define CMD_NOT_FOUND -2     /**< Comando inválido. */
 #define CS_ERROR -3          /**< Erro no checksum. */
 #define WRONG_STR_FORMAT -4 /**< Formato de string errado. */
 #define BUFFER_FULL -5       /**< Buffer cheio. */
+#define SENSOR_ERROR -6      /**< Tipo de sensor errado*/
 
 /* Function prototypes */
 

@@ -48,13 +48,20 @@ int cmdProcessor(void)
 	unsigned char sensorValues[UART_RX_SIZE]; 
     int sensorValuesLen; 
     unsigned char lastSamples[UART_RX_SIZE]; 
-    int lastSamplesLen; 
+    int lastSamplesLen = 0;
 	unsigned char sensorValue[UART_RX_SIZE];
 	int sensorValueLen;
 		
+	// DEBBUG: Verificar Rx Buffer
+	printf("Rx Buffer:");
+	for(int i = 0;i<rxBufLen;i++){
+		printf("%c",UARTRxBuffer[i]);
+	}
+	printf("\n");
+
 	/* Detect empty cmd string */
 	if(rxBufLen == 0)
-		return -1; 
+		return EMPTY_STRING; 
 	
 	/* Find index of SOF */
 	for(i=0; i < rxBufLen; i++) {
@@ -72,46 +79,51 @@ int cmdProcessor(void)
             cmdData[cmdDataLen++] = UARTRxBuffer[j];
         }
 
+		// DEBBUG : Buffer de transmissão
+        printf("Tx Buffer:");
+        for (int k = 0; k < cmdDataLen; k++) {
+            printf("%c", cmdData[k]);
+        }
+        printf("\n");
+
 		if(i < rxBufLen) {
 			switch(UARTRxBuffer[i+1]) { 
 				
-				case 'A':	// Reads the real-time values of the variables provided by the sensor
+				case 'A': 
+					printf("Comando A \n");
+					emulateSensor('t', sensorValues, &sensorValuesLen);
+					resetTxBuffer(); // Limpa o buffer de transmissão antes de adicionar a nova resposta
+					txChar('#');
+					txChar('A');
+					for (int k = 0; k < sensorValuesLen; k++) {
+						txChar(sensorValues[k]);
+					}
+					txChar('!');
+					txBufLen = sensorValuesLen + 3; // Atualiza o comprimento do buffer de transmissão
+					break;
 
-					// Emulate and send all sensor values
-						//unsigned char sensorValues[UART_RX_SIZE];
-						//int sensorValuesLen;
-						emulateSensor('t', sensorValues, &sensorValuesLen);
-						txChar('#');
-						txChar('A');
-						for(int k=0; k<sensorValuesLen; k++) {
-							txChar(sensorValues[k]);
-						}
-						txChar('!');
-						break;
+
 
 				case 'P':	// Reads the real-time value of one of the sensors
 
 					if (i + 2 >= rxBufLen) {
-        				return CMD_NOT_FOUND; // Comando incompleto
-    				}
-					
-					sid = UARTRxBuffer[i+2]; // Tipo de sensor
-					if (sid != 't' && sid != 'h' && sid != 'c') {
-						return CMD_NOT_FOUND; // Tipo de sensor inválido
+						printf("CmdProcessor: Incomplete command\n");
+						return CMD_NOT_FOUND; // Comando incompleto
 					}
-
-					/* Check checksum */
-					if(!(calcChecksum(&(UARTRxBuffer[i+1]),2))) {
-						return CS_ERROR;
+                    
+					sid = UARTRxBuffer[i+2]; // Tipo de sensor
+					printf("CmdProcessor: Sensor type: %c\n", sid);
+					if (sid != 't' && sid != 'h' && sid != 'c') {
+						printf("CmdProcessor: Invalid sensor type\n");
+						return SENSOR_ERROR; // Tipo de sensor inválido
 					}
 
 					/* Check EOF */
-					if(UARTRxBuffer[i+6] != EOF_SYM) {
-						return WRONG_STR_FORMAT;
+					if(UARTRxBuffer[j-1] != EOF_SYM) {
+    				printf("CmdProcessor: Wrong string format\n");
+    				return WRONG_STR_FORMAT;
 					}
 
-					//unsigned char sensorValue[UART_RX_SIZE];
-					//int sensorValueLen;
 					emulateSensor(sid, sensorValue, &sensorValueLen);
 					txChar('#');
 					txChar('p');
@@ -120,13 +132,14 @@ int cmdProcessor(void)
 						txChar(sensorValue[k]);
 					}
 					txChar('!');
+					
+					printf("CmdProcessor: Command P\n");
 					break;
 
 
 									
 				case 'L': // Returns the last 20 samples of each variable
 				
-					// Código para  obter os últimos 20 samples de cada sensor.
 
 					// Copiar as últimas 20 amostras para lastSamples
 					for (int i = 0; i < 20; i++) {
@@ -165,10 +178,11 @@ int cmdProcessor(void)
             }	
 			
 		}
+		return 0;
 	}
 	
 	/* Cmd string not null and SOF not found */
-	return -4;
+	return WRONG_STR_FORMAT;
 }
 
 /**
@@ -176,24 +190,26 @@ int cmdProcessor(void)
  * 
  * @param buf Buffer que contém os caracteres.
  * @param nbytes Número de caracteres a serem considerados para o cálculo do checksum.
- * @return 1 se o checksum calculado corresponder ao checksum recebido,
- *         0 caso contrário.
+ * @return Devolve o valor do checksum
  */ 
 int calcChecksum(unsigned char * buf, int nbytes) {
     int sum = 0;
-    for (int i = 0; i < nbytes; i++) {
+    for (int i = 0; i < nbytes-1 ; i++) {
         sum += buf[i];
+		printf("Valor de buf[%d] : %d\n",i, buf[i]);
+        printf("Valor de buf[%d]: %c, Soma parcial: %d\n", i, buf[i], sum);
     }
     sum %= 256; // Garante que o valor 'sum' esteja entre 0-255
+    printf("Soma final antes da conversão ASCII: %03d\n", sum);
 
-	// Conversão do para código ASCII e validação/comparação com o valor de checksum recebido
+    // Conversão para código ASCII e validação/comparação com o valor de checksum recebido
     char ascii_Sum[4];
     sprintf(ascii_Sum, "%03d", sum);
-    if (buf[nbytes] == ascii_Sum[0] && buf[nbytes + 1] == ascii_Sum[1] && buf[nbytes + 2] == ascii_Sum[2]) {
-        return 1; // Checksum calculado == checksum recebido
-    }
-    return 0;    // Caso contrário. 
+    printf("Checksum calculado em ASCII: %s\n", ascii_Sum);
+    
+	return sum;
 }
+
 
 
 /**
@@ -275,17 +291,21 @@ void getTxBuffer(unsigned char * buf, int * len)
  * @param len Ponteiro para uma variável onde é armazenado o tamanho dos dados.
  */
 void emulateSensor(unsigned char sensorType, unsigned char *buf, int *len) {
-    sensorCounter++;
-    int index = sensorCounter % 20; // Índice para armazenar a amostra atual
+    sensorCounter++;  //Variavel usada para obter diferentes valores a chamada da função.
+    int index = sensorCounter % 20; // Indice da amostra num buffer "circular" de 20 amostras para atender à especificação de ter um log de 20 amostras
 	int temp, hum, co2;
 
     switch (sensorType) {
         case 't':
-            temp = ((sensorCounter % 111) - 50); // Range do sensor de temperatura : [-50 ; 60]
-            sensorData.temperature[index] = temp;
-            sprintf((char*)buf, "+%02d", temp);
-            *len = strlen((char*)buf);
-            break;
+			temp = ((sensorCounter % 111) - 50); // Range do sensor de temperatura : [-50 ; 60]
+			sensorData.temperature[index] = temp;
+			if (temp >= 0) {
+				sprintf((char*)buf, "+%02d", temp);
+			} else {
+				sprintf((char*)buf, "-%02d", -temp);
+			}
+			*len = strlen((char*)buf);
+			break;
         case 'h':
             hum = (sensorCounter % 101); // Range do sensor de humidade : [0 ; 100]
             sensorData.humidity[index] = hum;

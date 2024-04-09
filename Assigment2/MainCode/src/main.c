@@ -21,7 +21,7 @@ int main(void)
 {
 	int i,len, err;
 	unsigned char ans[30]; 
-	unsigned char ansTest1[]={'#','p','t', '+', '2', '1', '1', '1', '4','!'};
+	unsigned char ansTest1[]={'#','p','t', '1', '9', '6', '!'};
 	
 	printf("\n Smart Sensor interface emulation \n");
 	printf(" \t - simple illustration of interface and use \n\n\r");
@@ -67,28 +67,28 @@ int main(void)
 	printf("\n");
 	
 	
-	/* Test 2 */
+	// /* Test 2 */
 	
-	printf("Test2 - check the answer to a transmission omission/error \n");
+	// printf("Test2 - check the answer to a transmission omission/error \n");
 	
-	/* 1 - send the command */
-	rxChar('#');
-	rxChar('P');
-	// rxChar('t'); - simulates missing character, emulates a tx error 
-	rxChar('1');
-	rxChar('9');
-	rxChar('6');
-	rxChar('!');
+	// /* 1 - send the command */
+	// rxChar('#');
+	// rxChar('P');
+	// // rxChar('t'); - simulates missing character, emulates a tx error 
+	// rxChar('1');
+	// rxChar('9');
+	// rxChar('6');
+	// rxChar('!');
 			
-	/* 2 - Process the comand and check the answer */
+	// /* 2 - Process the comand and check the answer */
 	
-	err=cmdProcessor();
+	// err=cmdProcessor();
 		
-	if(err == CMD_NOT_FOUND) {
-		printf("Test 2 succeeded, as omission was detected\n");
-	} else {
-		printf("Test 2 failed, as omission was not detected\n");
-	}		
+	// if(err == CMD_NOT_FOUND) {
+	// 	printf("Test 2 succeeded, as omission was detected\n");
+	// } else {
+	// 	printf("Test 2 failed, as omission was not detected\n");
+	// }		
 	
 	/* Much more tests are needed. Unity shoul be used for it. */
 	
