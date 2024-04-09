@@ -1,0 +1,184 @@
+\hypertarget{cmdproc_8c}{}\doxysection{Main\+Code/src/cmdproc.c File Reference}
+\label{cmdproc_8c}\index{MainCode/src/cmdproc.c@{MainCode/src/cmdproc.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}cmdproc.\+h\char`\"{}}\newline
+Include dependency graph for cmdproc.\+c\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cmdproc_8c_afbdfe0465dfd34a5f244fe41fa27c12a}{cmd\+Processor}} (void)
+\begin{DoxyCompactList}\small\item\em Processa os caracteres recebidos através do buffer de receção da U\+A\+RT. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cmdproc_8c_a2a0e03d8d8ff0f0459f7623ffd6d39b1}{calc\+Checksum}} (unsigned char $\ast$buf, int nbytes)
+\begin{DoxyCompactList}\small\item\em Calculo e validação do valor de checksum. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cmdproc_8c_a67ae8a79a708a3c5471668bddbd16400}{rx\+Char}} (unsigned char car)
+\begin{DoxyCompactList}\small\item\em Adiciona um caractere ao buffer de receção da U\+A\+RT. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cmdproc_8c_abdb4363f0662688850bbcdfb59ce4566}{tx\+Char}} (unsigned char car)
+\begin{DoxyCompactList}\small\item\em Adiciona um caractere ao buffer de transmissão da U\+A\+RT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cmdproc_8c_a918f38a7eecdd03671d28a3a07f94856}{reset\+Rx\+Buffer}} (void)
+\begin{DoxyCompactList}\small\item\em Reset do buffer de receção da U\+A\+RT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cmdproc_8c_abd91ad9b5887f4769f45823899583bab}{reset\+Tx\+Buffer}} (void)
+\begin{DoxyCompactList}\small\item\em Reset do buffer de transmissão da U\+A\+RT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cmdproc_8c_a8beeddde9a644610c72724be856db6dd}{get\+Tx\+Buffer}} (unsigned char $\ast$buf, int $\ast$len)
+\begin{DoxyCompactList}\small\item\em Retorna os dados que vão ser enviados pelo sensor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{cmdproc_8c_a80ac613e6088e0ed06af26839f0d9624}{emulate\+Sensor}} (unsigned char sensor\+Type, unsigned char $\ast$buf, int $\ast$len)
+\begin{DoxyCompactList}\small\item\em Simula a leitura de um sensor e armazena o valor em \textquotesingle{}buf\textquotesingle{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structSensorSamples}{Sensor\+Samples}} \mbox{\hyperlink{cmdproc_8c_a78efa42b5dd181c69a7587450f7584ef}{sensor\+Data}}
+\begin{DoxyCompactList}\small\item\em Inicialização da estrutura de dados. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cmdproc_8c_a2a0e03d8d8ff0f0459f7623ffd6d39b1}\label{cmdproc_8c_a2a0e03d8d8ff0f0459f7623ffd6d39b1}} 
+\index{cmdproc.c@{cmdproc.c}!calcChecksum@{calcChecksum}}
+\index{calcChecksum@{calcChecksum}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{calcChecksum()}{calcChecksum()}}
+{\footnotesize\ttfamily int calc\+Checksum (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buf,  }\item[{int}]{nbytes }\end{DoxyParamCaption})}
+
+
+
+Calculo e validação do valor de checksum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Buffer que contém os caracteres. \\
+\hline
+{\em nbytes} & Número de caracteres a serem considerados para o cálculo do checksum. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devolve o valor do checksum 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cmdproc_8c_afbdfe0465dfd34a5f244fe41fa27c12a}\label{cmdproc_8c_afbdfe0465dfd34a5f244fe41fa27c12a}} 
+\index{cmdproc.c@{cmdproc.c}!cmdProcessor@{cmdProcessor}}
+\index{cmdProcessor@{cmdProcessor}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{cmdProcessor()}{cmdProcessor()}}
+{\footnotesize\ttfamily int cmd\+Processor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Processa os caracteres recebidos através do buffer de receção da U\+A\+RT. 
+
+\begin{DoxyReturn}{Returns}
+0 se um comando válido foi encontrado e executado, -\/1 (E\+M\+P\+T\+Y\+\_\+\+S\+T\+R\+I\+NG) se a string de comando estiver vazia ou incompleta, -\/2 (C\+M\+D\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND) se um comando inválido for encontrado, -\/3 (C\+S\+\_\+\+E\+R\+R\+OR) se um erro de checksum for detectado, -\/4 (W\+R\+O\+N\+G\+\_\+\+S\+T\+R\+\_\+\+F\+O\+R\+M\+AT) se o formato da string estiver errado. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cmdproc_8c_a80ac613e6088e0ed06af26839f0d9624}\label{cmdproc_8c_a80ac613e6088e0ed06af26839f0d9624}} 
+\index{cmdproc.c@{cmdproc.c}!emulateSensor@{emulateSensor}}
+\index{emulateSensor@{emulateSensor}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{emulateSensor()}{emulateSensor()}}
+{\footnotesize\ttfamily void emulate\+Sensor (\begin{DoxyParamCaption}\item[{unsigned char}]{sensor\+Type,  }\item[{unsigned char $\ast$}]{buf,  }\item[{int $\ast$}]{len }\end{DoxyParamCaption})}
+
+
+
+Simula a leitura de um sensor e armazena o valor em \textquotesingle{}buf\textquotesingle{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+Type} & Tipo de sensor a ser emulado(t,h,c). \\
+\hline
+{\em buf} & Buffer onde o valor do sensor será armazenado. \\
+\hline
+{\em len} & Ponteiro para uma variável onde é armazenado o tamanho dos dados. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cmdproc_8c_a8beeddde9a644610c72724be856db6dd}\label{cmdproc_8c_a8beeddde9a644610c72724be856db6dd}} 
+\index{cmdproc.c@{cmdproc.c}!getTxBuffer@{getTxBuffer}}
+\index{getTxBuffer@{getTxBuffer}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{getTxBuffer()}{getTxBuffer()}}
+{\footnotesize\ttfamily void get\+Tx\+Buffer (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buf,  }\item[{int $\ast$}]{len }\end{DoxyParamCaption})}
+
+
+
+Retorna os dados que vão ser enviados pelo sensor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & Buffer onde os dados serão armazenados. \\
+\hline
+{\em len} & Ponteiro para uma variável onde é armazenado o tamanho dos dados. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{cmdproc_8c_a918f38a7eecdd03671d28a3a07f94856}\label{cmdproc_8c_a918f38a7eecdd03671d28a3a07f94856}} 
+\index{cmdproc.c@{cmdproc.c}!resetRxBuffer@{resetRxBuffer}}
+\index{resetRxBuffer@{resetRxBuffer}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{resetRxBuffer()}{resetRxBuffer()}}
+{\footnotesize\ttfamily void reset\+Rx\+Buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reset do buffer de receção da U\+A\+RT. 
+
+\mbox{\Hypertarget{cmdproc_8c_abd91ad9b5887f4769f45823899583bab}\label{cmdproc_8c_abd91ad9b5887f4769f45823899583bab}} 
+\index{cmdproc.c@{cmdproc.c}!resetTxBuffer@{resetTxBuffer}}
+\index{resetTxBuffer@{resetTxBuffer}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{resetTxBuffer()}{resetTxBuffer()}}
+{\footnotesize\ttfamily void reset\+Tx\+Buffer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reset do buffer de transmissão da U\+A\+RT. 
+
+\mbox{\Hypertarget{cmdproc_8c_a67ae8a79a708a3c5471668bddbd16400}\label{cmdproc_8c_a67ae8a79a708a3c5471668bddbd16400}} 
+\index{cmdproc.c@{cmdproc.c}!rxChar@{rxChar}}
+\index{rxChar@{rxChar}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{rxChar()}{rxChar()}}
+{\footnotesize\ttfamily int rx\+Char (\begin{DoxyParamCaption}\item[{unsigned char}]{car }\end{DoxyParamCaption})}
+
+
+
+Adiciona um caractere ao buffer de receção da U\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em car} & Caractere a ser adicionado ao buffer de receção. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 se o caractere for adicionado com sucesso, -\/5 (B\+U\+F\+F\+E\+R\+\_\+\+F\+U\+LL) se o buffer estiver cheio. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{cmdproc_8c_abdb4363f0662688850bbcdfb59ce4566}\label{cmdproc_8c_abdb4363f0662688850bbcdfb59ce4566}} 
+\index{cmdproc.c@{cmdproc.c}!txChar@{txChar}}
+\index{txChar@{txChar}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{txChar()}{txChar()}}
+{\footnotesize\ttfamily int tx\+Char (\begin{DoxyParamCaption}\item[{unsigned char}]{car }\end{DoxyParamCaption})}
+
+
+
+Adiciona um caractere ao buffer de transmissão da U\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em car} & Caractere a ser adicionado ao buffer de transmissão. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 se o caractere for adicionado com sucesso, -\/5 (B\+U\+F\+F\+E\+R\+\_\+\+F\+U\+LL) se o buffer estiver cheio. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{cmdproc_8c_a78efa42b5dd181c69a7587450f7584ef}\label{cmdproc_8c_a78efa42b5dd181c69a7587450f7584ef}} 
+\index{cmdproc.c@{cmdproc.c}!sensorData@{sensorData}}
+\index{sensorData@{sensorData}!cmdproc.c@{cmdproc.c}}
+\doxysubsubsection{\texorpdfstring{sensorData}{sensorData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSensorSamples}{Sensor\+Samples}} sensor\+Data}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .temperature = \{0\},}
+\DoxyCodeLine{    .humidity = \{0\},}
+\DoxyCodeLine{    .co2 = \{0\},}
+\DoxyCodeLine{    .count = 0}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Inicialização da estrutura de dados. 
+

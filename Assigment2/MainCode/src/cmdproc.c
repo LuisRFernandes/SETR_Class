@@ -138,43 +138,13 @@ int cmdProcessor(void)
 
 
 									
-				case 'L': // Returns the last 20 samples of each variable
+				case 'L': 
+					// Não implementado
 				
-
-					// Copiar as últimas 20 amostras para lastSamples
-					for (int i = 0; i < 20; i++) {
-						int index = (sensorData.count - i - 1 + 20) % 20; // Garante que o índice esteja dentro do intervalo
-						if (i > 0) {
-							lastSamples[lastSamplesLen++] = ','; // Separador entre amostras
-						}
-						sprintf((char*)&lastSamples[lastSamplesLen], "+%02d", sensorData.temperature[index]);
-						lastSamplesLen += 3; // 3 caracteres - 1 de sinal e 2 numéricos
-
-						sprintf((char*)&lastSamples[lastSamplesLen], ",%02d", sensorData.humidity[index]);
-						lastSamplesLen += 3; // 3 caracteres para a humidade
-
-						sprintf((char*)&lastSamples[lastSamplesLen], ",%04d", sensorData.co2[index]);
-						lastSamplesLen += 5; // 5 caracteres para o CO2
-    }
-
-					txChar('#');
-					txChar('L');
-					for(int k=0; k<lastSamplesLen; k++) {
-						txChar(lastSamples[k]);
-					}
-					txChar('!');
-                    break;
-                case 'R': // Resets the history
+                case 'R': 
+					// Não implementado
 
                     sensorCounter = 0;
-					// Redefine os arrays de temperatura, umidade e CO2 para seus valores iniciais
-					memset(sensorData.temperature, 0, sizeof(sensorData.temperature));
-					memset(sensorData.humidity, 0, sizeof(sensorData.humidity));
-					memset(sensorData.co2, 0, sizeof(sensorData.co2));
-					sensorData.count = 0; // Redefine o contador de amostras para 0
-					break;
-                default:
-                    return CMD_NOT_FOUND; // Unrecognized command
             }	
 			
 		}
@@ -196,8 +166,8 @@ int calcChecksum(unsigned char * buf, int nbytes) {
     int sum = 0;
     for (int i = 0; i < nbytes-1 ; i++) {
         sum += buf[i];
-		printf("Valor de buf[%d] : %d\n",i, buf[i]);
-        printf("Valor de buf[%d]: %c, Soma parcial: %d\n", i, buf[i], sum);
+		//printf("Valor de buf[%d] : %d\n",i, buf[i]);
+        //printf("Valor de buf[%d]: %c, Soma parcial: %d\n", i, buf[i], sum);
     }
     sum %= 256; // Garante que o valor 'sum' esteja entre 0-255
     printf("Soma final antes da conversão ASCII: %03d\n", sum);

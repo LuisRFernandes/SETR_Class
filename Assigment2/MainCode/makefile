@@ -5,11 +5,9 @@ UNITY_ROOT = ..
 SRC_FOLDER = src
 TEST_FOLDER = test
 
-# Commands
 CLEANUP = rm -f
 MKDIR = mkdir -p
 
-# Compiler
 C_COMPILER = gcc
 CFLAGS += -Wall
 
@@ -25,7 +23,7 @@ all: clean default
 default: $(TARGET)
 
 $(TARGET): $(SRC_FILES)
-	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SYMBOLS) $^ -o $@
+	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SYMBOLS) $^ -o testcmdproc
 
 clean:
 	$(CLEANUP) $(TARGET)
