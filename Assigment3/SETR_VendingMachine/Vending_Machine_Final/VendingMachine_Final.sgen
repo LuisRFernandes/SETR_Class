@@ -1,0 +1,15 @@
+GeneratorModel for create::c {
+
+	const PROJECT : string = "Vending_Machine_Final"
+
+	const FOLDER : string = "src-gen"
+
+	statechart VendingMachine {
+
+		feature Outlet {
+			targetProject = PROJECT
+			targetFolder = FOLDER
+			libraryTargetFolder = "src"
+		}
+	}
+}
