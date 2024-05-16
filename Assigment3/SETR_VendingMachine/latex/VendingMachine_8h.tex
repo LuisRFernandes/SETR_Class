@@ -1,0 +1,255 @@
+\hypertarget{VendingMachine_8h}{}\doxysection{Vending\+\_\+\+Machine\+\_\+\+Final/src-\/gen/\+Vending\+Machine.h File Reference}
+\label{VendingMachine_8h}\index{Vending\_Machine\_Final/src-\/gen/VendingMachine.h@{Vending\_Machine\_Final/src-\/gen/VendingMachine.h}}
+{\ttfamily \#include \char`\"{}../src/sc\+\_\+types.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Vending\+Machine.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvendingmachine__event}{vendingmachine\+\_\+event}}
+\item 
+struct \mbox{\hyperlink{structvendingmachine__eventqueue__s}{vendingmachine\+\_\+eventqueue\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structVendingMachineIface}{Vending\+Machine\+Iface}}
+\item 
+struct \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_a5ada88b4160afabf76da8829399ad5f0}\label{VendingMachine_8h_a5ada88b4160afabf76da8829399ad5f0}} 
+\#define {\bfseries V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+E\+V\+E\+N\+T\+Q\+U\+E\+U\+E\+\_\+\+B\+U\+F\+F\+E\+R\+S\+I\+ZE}~20
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_aa2b51102a8c13d3e8c24a6a343473a66}\label{VendingMachine_8h_aa2b51102a8c13d3e8c24a6a343473a66}} 
+\#define {\bfseries V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+N\+\_\+\+E\+V\+E\+N\+T\+Q\+U\+E\+U\+E\+\_\+\+B\+U\+F\+F\+E\+R\+S\+I\+ZE}~V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+E\+V\+E\+N\+T\+Q\+U\+E\+U\+E\+\_\+\+B\+U\+F\+F\+E\+R\+S\+I\+ZE
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_a1011387100b3f835d46e3f7a1a8135a0}\label{VendingMachine_8h_a1011387100b3f835d46e3f7a1a8135a0}} 
+\#define {\bfseries S\+C\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+E\+V\+E\+N\+T\+\_\+\+V\+A\+L\+UE}~0
+\item 
+\#define \mbox{\hyperlink{VendingMachine_8h_a73c58ee4e77efbc47428a6a68055f0e5}{V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+O\+U\+NT}}~4
+\item 
+\#define \mbox{\hyperlink{VendingMachine_8h_a70f3c6f6e5dd43d9c58c713873dbec70}{V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+M\+A\+X\+\_\+\+O\+R\+T\+H\+O\+G\+O\+N\+A\+L\+\_\+\+S\+T\+A\+T\+ES}}~1
+\item 
+\#define \mbox{\hyperlink{VendingMachine_8h_a68fe192e6ee4beb83eb8183800b08411}{S\+C\+V\+I\+\_\+\+V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+M\+A\+I\+N\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+O\+P\+E\+R\+A\+T\+I\+ON}}~0
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_a60a8c9a262e0bc244a71ea0bffa4f7f7}\label{VendingMachine_8h_a60a8c9a262e0bc244a71ea0bffa4f7f7}} 
+\#define {\bfseries S\+C\+V\+I\+\_\+\+V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+M\+A\+I\+N\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+R\+E\+F\+U\+ND}~0
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_a213e738119e9d9bbb1c75cf6752a04ca}\label{VendingMachine_8h_a213e738119e9d9bbb1c75cf6752a04ca}} 
+\#define {\bfseries S\+C\+V\+I\+\_\+\+V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+M\+A\+I\+N\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+B\+U\+Y\+I\+NG}~0
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_aeb252411d81baf2c6719746da1f18a0e}\label{VendingMachine_8h_aeb252411d81baf2c6719746da1f18a0e}} 
+\#define {\bfseries S\+C\+V\+I\+\_\+\+V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+M\+A\+I\+N\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+B\+U\+Y\+\_\+\+R\+E\+J\+E\+C\+T\+ED}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} \mbox{\hyperlink{VendingMachine_8h_a6f7b93cafcc05b4ea5671a40542961ee}{Vending\+Machine}}
+\item 
+typedef struct \mbox{\hyperlink{structVendingMachineIface}{Vending\+Machine\+Iface}} \mbox{\hyperlink{VendingMachine_8h_a2e53e4d33d7bf1ab1c5d428a001bd357}{Vending\+Machine\+Iface}}
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_a7cbb5ce2b0fd5ec5192f5df7242f8963}\label{VendingMachine_8h_a7cbb5ce2b0fd5ec5192f5df7242f8963}} 
+typedef struct \mbox{\hyperlink{structvendingmachine__eventqueue__s}{vendingmachine\+\_\+eventqueue\+\_\+s}} {\bfseries vendingmachine\+\_\+eventqueue}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{VendingMachine_8h_a4eed45a88079daefc54f982095ed2a05}\label{VendingMachine_8h_a4eed45a88079daefc54f982095ed2a05}} 
+enum {\bfseries Vending\+Machine\+Event\+ID} \{ \newline
+{\bfseries Vending\+Machine\+\_\+invalid\+\_\+event} = S\+C\+\_\+\+I\+N\+V\+A\+L\+I\+D\+\_\+\+E\+V\+E\+N\+T\+\_\+\+V\+A\+L\+UE, 
+{\bfseries Vending\+Machine\+\_\+botao1euro}, 
+{\bfseries Vending\+Machine\+\_\+botao2euros}, 
+{\bfseries Vending\+Machine\+\_\+botao3\+\_\+browse}, 
+\newline
+{\bfseries Vending\+Machine\+\_\+botao4\+\_\+select}
+ \}
+\item 
+enum \mbox{\hyperlink{VendingMachine_8h_ad9acf510f73042341e0075b81e752a73}{Vending\+Machine\+States}} \{ \newline
+{\bfseries Vending\+Machine\+\_\+last\+\_\+state}, 
+{\bfseries Vending\+Machine\+\_\+main\+\_\+region\+\_\+\+Operation}, 
+{\bfseries Vending\+Machine\+\_\+main\+\_\+region\+\_\+\+Refund}, 
+{\bfseries Vending\+Machine\+\_\+main\+\_\+region\+\_\+\+Buying}, 
+\newline
+{\bfseries Vending\+Machine\+\_\+main\+\_\+region\+\_\+\+Buy\+\_\+rejected}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_a345925dd6f59ee6563614f5540410ced}{vending\+Machine\+\_\+init}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_a1894a88b0df89479555ced3b72474c72}{vending\+Machine\+\_\+enter}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_a9ac0c4a86bb614192fd7fb6a56a96584}{vending\+Machine\+\_\+exit}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_a9cbf01dce0c3accaef7b67d868927dfb}{vending\+Machine\+\_\+trigger\+\_\+without\+\_\+event}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_ae604da2ee531f86b044d90dbe32bda2a}{vending\+Machine\+\_\+raise\+\_\+botao1euro}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_af2d889e4e98df2da02eb4c6c83950cbc}{vending\+Machine\+\_\+raise\+\_\+botao2euros}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_a0203e4ecd9c10414b1ad31e7f05fff87}{vending\+Machine\+\_\+raise\+\_\+botao3\+\_\+browse}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_af1fac15e5bcf55880a595cf67baa0e5e}{vending\+Machine\+\_\+raise\+\_\+botao4\+\_\+select}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+sc\+\_\+integer \mbox{\hyperlink{VendingMachine_8h_a6061a742f9bc4de87fa61c4ca0cd30c0}{vending\+Machine\+\_\+get\+\_\+credito}} (const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_ab618291dcc1aca098ca2c1ed52df6ff5}{vending\+Machine\+\_\+set\+\_\+credito}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle, sc\+\_\+integer value)
+\item 
+sc\+\_\+integer \mbox{\hyperlink{VendingMachine_8h_a2fe96041c7dc0c4c51a48eb4f3f56e7f}{vending\+Machine\+\_\+get\+\_\+produto}} (const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+void \mbox{\hyperlink{VendingMachine_8h_a8432f46a3b6ce413c5e4c9d503512d21}{vending\+Machine\+\_\+set\+\_\+produto}} (\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle, sc\+\_\+integer value)
+\item 
+sc\+\_\+boolean \mbox{\hyperlink{VendingMachine_8h_a783c9f56204ddea2336fa96b31080925}{vending\+Machine\+\_\+is\+\_\+active}} (const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+sc\+\_\+boolean \mbox{\hyperlink{VendingMachine_8h_aacfe2870a3af41aa5c96ff1b85c5c351}{vending\+Machine\+\_\+is\+\_\+final}} (const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle)
+\item 
+sc\+\_\+boolean \mbox{\hyperlink{VendingMachine_8h_ad6e380f8c40e0354ee40c3152d0e4d1e}{vending\+Machine\+\_\+is\+\_\+state\+\_\+active}} (const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$handle, \mbox{\hyperlink{VendingMachine_8h_ad9acf510f73042341e0075b81e752a73}{Vending\+Machine\+States}} state)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header of the state machine \textquotesingle{}\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}}\textquotesingle{}. 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{VendingMachine_8h_a68fe192e6ee4beb83eb8183800b08411}\label{VendingMachine_8h_a68fe192e6ee4beb83eb8183800b08411}} 
+\index{VendingMachine.h@{VendingMachine.h}!SCVI\_VENDINGMACHINE\_MAIN\_REGION\_OPERATION@{SCVI\_VENDINGMACHINE\_MAIN\_REGION\_OPERATION}}
+\index{SCVI\_VENDINGMACHINE\_MAIN\_REGION\_OPERATION@{SCVI\_VENDINGMACHINE\_MAIN\_REGION\_OPERATION}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{SCVI\_VENDINGMACHINE\_MAIN\_REGION\_OPERATION}{SCVI\_VENDINGMACHINE\_MAIN\_REGION\_OPERATION}}
+{\footnotesize\ttfamily \#define S\+C\+V\+I\+\_\+\+V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+M\+A\+I\+N\+\_\+\+R\+E\+G\+I\+O\+N\+\_\+\+O\+P\+E\+R\+A\+T\+I\+ON~0}
+
+Define indices of states in the State\+Conf\+Vector \mbox{\Hypertarget{VendingMachine_8h_a70f3c6f6e5dd43d9c58c713873dbec70}\label{VendingMachine_8h_a70f3c6f6e5dd43d9c58c713873dbec70}} 
+\index{VendingMachine.h@{VendingMachine.h}!VENDINGMACHINE\_MAX\_ORTHOGONAL\_STATES@{VENDINGMACHINE\_MAX\_ORTHOGONAL\_STATES}}
+\index{VENDINGMACHINE\_MAX\_ORTHOGONAL\_STATES@{VENDINGMACHINE\_MAX\_ORTHOGONAL\_STATES}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{VENDINGMACHINE\_MAX\_ORTHOGONAL\_STATES}{VENDINGMACHINE\_MAX\_ORTHOGONAL\_STATES}}
+{\footnotesize\ttfamily \#define V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+M\+A\+X\+\_\+\+O\+R\+T\+H\+O\+G\+O\+N\+A\+L\+\_\+\+S\+T\+A\+T\+ES~1}
+
+Define dimension of the state configuration vector for orthogonal states. \mbox{\Hypertarget{VendingMachine_8h_a73c58ee4e77efbc47428a6a68055f0e5}\label{VendingMachine_8h_a73c58ee4e77efbc47428a6a68055f0e5}} 
+\index{VendingMachine.h@{VendingMachine.h}!VENDINGMACHINE\_STATE\_COUNT@{VENDINGMACHINE\_STATE\_COUNT}}
+\index{VENDINGMACHINE\_STATE\_COUNT@{VENDINGMACHINE\_STATE\_COUNT}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{VENDINGMACHINE\_STATE\_COUNT}{VENDINGMACHINE\_STATE\_COUNT}}
+{\footnotesize\ttfamily \#define V\+E\+N\+D\+I\+N\+G\+M\+A\+C\+H\+I\+N\+E\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+O\+U\+NT~4}
+
+Define number of states in the state enum 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{VendingMachine_8h_a6f7b93cafcc05b4ea5671a40542961ee}\label{VendingMachine_8h_a6f7b93cafcc05b4ea5671a40542961ee}} 
+\index{VendingMachine.h@{VendingMachine.h}!VendingMachine@{VendingMachine}}
+\index{VendingMachine@{VendingMachine}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{VendingMachine}{VendingMachine}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}}}
+
+Generated by itemis C\+R\+E\+A\+TE code generator.
+
+Forward declaration for the \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} state machine. \mbox{\Hypertarget{VendingMachine_8h_a2e53e4d33d7bf1ab1c5d428a001bd357}\label{VendingMachine_8h_a2e53e4d33d7bf1ab1c5d428a001bd357}} 
+\index{VendingMachine.h@{VendingMachine.h}!VendingMachineIface@{VendingMachineIface}}
+\index{VendingMachineIface@{VendingMachineIface}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{VendingMachineIface}{VendingMachineIface}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structVendingMachineIface}{Vending\+Machine\+Iface}} \mbox{\hyperlink{structVendingMachineIface}{Vending\+Machine\+Iface}}}
+
+Forward declaration of the data structure for the \mbox{\hyperlink{structVendingMachineIface}{Vending\+Machine\+Iface}} interface scope. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{VendingMachine_8h_ad9acf510f73042341e0075b81e752a73}\label{VendingMachine_8h_ad9acf510f73042341e0075b81e752a73}} 
+\index{VendingMachine.h@{VendingMachine.h}!VendingMachineStates@{VendingMachineStates}}
+\index{VendingMachineStates@{VendingMachineStates}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{VendingMachineStates}{VendingMachineStates}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{VendingMachine_8h_ad9acf510f73042341e0075b81e752a73}{Vending\+Machine\+States}}}
+
+Enumeration of all states 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{VendingMachine_8h_a1894a88b0df89479555ced3b72474c72}\label{VendingMachine_8h_a1894a88b0df89479555ced3b72474c72}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_enter@{vendingMachine\_enter}}
+\index{vendingMachine\_enter@{vendingMachine\_enter}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_enter()}{vendingMachine\_enter()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+enter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Activates the state machine. \mbox{\Hypertarget{VendingMachine_8h_a9ac0c4a86bb614192fd7fb6a56a96584}\label{VendingMachine_8h_a9ac0c4a86bb614192fd7fb6a56a96584}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_exit@{vendingMachine\_exit}}
+\index{vendingMachine\_exit@{vendingMachine\_exit}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_exit()}{vendingMachine\_exit()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Deactivates the state machine. \mbox{\Hypertarget{VendingMachine_8h_a6061a742f9bc4de87fa61c4ca0cd30c0}\label{VendingMachine_8h_a6061a742f9bc4de87fa61c4ca0cd30c0}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_get\_credito@{vendingMachine\_get\_credito}}
+\index{vendingMachine\_get\_credito@{vendingMachine\_get\_credito}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_get\_credito()}{vendingMachine\_get\_credito()}}
+{\footnotesize\ttfamily sc\+\_\+integer vending\+Machine\+\_\+get\+\_\+credito (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Gets the value of the variable \textquotesingle{}credito\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_a2fe96041c7dc0c4c51a48eb4f3f56e7f}\label{VendingMachine_8h_a2fe96041c7dc0c4c51a48eb4f3f56e7f}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_get\_produto@{vendingMachine\_get\_produto}}
+\index{vendingMachine\_get\_produto@{vendingMachine\_get\_produto}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_get\_produto()}{vendingMachine\_get\_produto()}}
+{\footnotesize\ttfamily sc\+\_\+integer vending\+Machine\+\_\+get\+\_\+produto (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Gets the value of the variable \textquotesingle{}produto\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_a345925dd6f59ee6563614f5540410ced}\label{VendingMachine_8h_a345925dd6f59ee6563614f5540410ced}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_init@{vendingMachine\_init}}
+\index{vendingMachine\_init@{vendingMachine\_init}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_init()}{vendingMachine\_init()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Initializes the \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} state machine data structures. Must be called before first usage. \mbox{\Hypertarget{VendingMachine_8h_a783c9f56204ddea2336fa96b31080925}\label{VendingMachine_8h_a783c9f56204ddea2336fa96b31080925}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_is\_active@{vendingMachine\_is\_active}}
+\index{vendingMachine\_is\_active@{vendingMachine\_is\_active}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_is\_active()}{vendingMachine\_is\_active()}}
+{\footnotesize\ttfamily sc\+\_\+boolean vending\+Machine\+\_\+is\+\_\+active (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Checks whether the state machine is active (until 2.\+4.\+1 this method was used for states). A state machine is active if it was entered. It is inactive if it has not been entered at all or if it has been exited. \mbox{\Hypertarget{VendingMachine_8h_aacfe2870a3af41aa5c96ff1b85c5c351}\label{VendingMachine_8h_aacfe2870a3af41aa5c96ff1b85c5c351}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_is\_final@{vendingMachine\_is\_final}}
+\index{vendingMachine\_is\_final@{vendingMachine\_is\_final}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_is\_final()}{vendingMachine\_is\_final()}}
+{\footnotesize\ttfamily sc\+\_\+boolean vending\+Machine\+\_\+is\+\_\+final (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Checks if all active states are final. If there are no active states then the state machine is considered being inactive. In this case this method returns false. \mbox{\Hypertarget{VendingMachine_8h_ad6e380f8c40e0354ee40c3152d0e4d1e}\label{VendingMachine_8h_ad6e380f8c40e0354ee40c3152d0e4d1e}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_is\_state\_active@{vendingMachine\_is\_state\_active}}
+\index{vendingMachine\_is\_state\_active@{vendingMachine\_is\_state\_active}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_is\_state\_active()}{vendingMachine\_is\_state\_active()}}
+{\footnotesize\ttfamily sc\+\_\+boolean vending\+Machine\+\_\+is\+\_\+state\+\_\+active (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle,  }\item[{\mbox{\hyperlink{VendingMachine_8h_ad9acf510f73042341e0075b81e752a73}{Vending\+Machine\+States}}}]{state }\end{DoxyParamCaption})}
+
+Checks if the specified state is active (until 2.\+4.\+1 the used method for states was called is\+Active()). \mbox{\Hypertarget{VendingMachine_8h_ae604da2ee531f86b044d90dbe32bda2a}\label{VendingMachine_8h_ae604da2ee531f86b044d90dbe32bda2a}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_raise\_botao1euro@{vendingMachine\_raise\_botao1euro}}
+\index{vendingMachine\_raise\_botao1euro@{vendingMachine\_raise\_botao1euro}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_raise\_botao1euro()}{vendingMachine\_raise\_botao1euro()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+raise\+\_\+botao1euro (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Raises the in event \textquotesingle{}botao1euro\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_af2d889e4e98df2da02eb4c6c83950cbc}\label{VendingMachine_8h_af2d889e4e98df2da02eb4c6c83950cbc}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_raise\_botao2euros@{vendingMachine\_raise\_botao2euros}}
+\index{vendingMachine\_raise\_botao2euros@{vendingMachine\_raise\_botao2euros}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_raise\_botao2euros()}{vendingMachine\_raise\_botao2euros()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+raise\+\_\+botao2euros (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Raises the in event \textquotesingle{}botao2euros\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_a0203e4ecd9c10414b1ad31e7f05fff87}\label{VendingMachine_8h_a0203e4ecd9c10414b1ad31e7f05fff87}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_raise\_botao3\_browse@{vendingMachine\_raise\_botao3\_browse}}
+\index{vendingMachine\_raise\_botao3\_browse@{vendingMachine\_raise\_botao3\_browse}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_raise\_botao3\_browse()}{vendingMachine\_raise\_botao3\_browse()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+raise\+\_\+botao3\+\_\+browse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Raises the in event \textquotesingle{}botao3\+\_\+browse\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_af1fac15e5bcf55880a595cf67baa0e5e}\label{VendingMachine_8h_af1fac15e5bcf55880a595cf67baa0e5e}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_raise\_botao4\_select@{vendingMachine\_raise\_botao4\_select}}
+\index{vendingMachine\_raise\_botao4\_select@{vendingMachine\_raise\_botao4\_select}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_raise\_botao4\_select()}{vendingMachine\_raise\_botao4\_select()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+raise\+\_\+botao4\+\_\+select (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Raises the in event \textquotesingle{}botao4\+\_\+select\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_ab618291dcc1aca098ca2c1ed52df6ff5}\label{VendingMachine_8h_ab618291dcc1aca098ca2c1ed52df6ff5}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_set\_credito@{vendingMachine\_set\_credito}}
+\index{vendingMachine\_set\_credito@{vendingMachine\_set\_credito}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_set\_credito()}{vendingMachine\_set\_credito()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+set\+\_\+credito (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle,  }\item[{sc\+\_\+integer}]{value }\end{DoxyParamCaption})}
+
+Sets the value of the variable \textquotesingle{}credito\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_a8432f46a3b6ce413c5e4c9d503512d21}\label{VendingMachine_8h_a8432f46a3b6ce413c5e4c9d503512d21}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_set\_produto@{vendingMachine\_set\_produto}}
+\index{vendingMachine\_set\_produto@{vendingMachine\_set\_produto}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_set\_produto()}{vendingMachine\_set\_produto()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+set\+\_\+produto (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle,  }\item[{sc\+\_\+integer}]{value }\end{DoxyParamCaption})}
+
+Sets the value of the variable \textquotesingle{}produto\textquotesingle{} that is defined in the default interface scope. \mbox{\Hypertarget{VendingMachine_8h_a9cbf01dce0c3accaef7b67d868927dfb}\label{VendingMachine_8h_a9cbf01dce0c3accaef7b67d868927dfb}} 
+\index{VendingMachine.h@{VendingMachine.h}!vendingMachine\_trigger\_without\_event@{vendingMachine\_trigger\_without\_event}}
+\index{vendingMachine\_trigger\_without\_event@{vendingMachine\_trigger\_without\_event}!VendingMachine.h@{VendingMachine.h}}
+\doxysubsubsection{\texorpdfstring{vendingMachine\_trigger\_without\_event()}{vendingMachine\_trigger\_without\_event()}}
+{\footnotesize\ttfamily void vending\+Machine\+\_\+trigger\+\_\+without\+\_\+event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structVendingMachine}{Vending\+Machine}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+Can be used by the client code to trigger a run to completion step without raising an event. 
