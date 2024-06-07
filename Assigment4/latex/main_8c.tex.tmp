@@ -1,0 +1,369 @@
+\hypertarget{main_8c}{}\doxysection{src/main.c File Reference}
+\label{main_8c}\index{src/main.c@{src/main.c}}
+
+
+Hardware control module using Zephyr OS with R\+T\+DB.  
+
+
+{\ttfamily \#include $<$zephyr/kernel.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/device.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/devicetree.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/drivers/gpio.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/sys/printk.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/drivers/uart.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/timing/timing.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/drivers/adc.\+h$>$}\newline
+Include dependency graph for main.\+c\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_a98c763adfeea8e9831c46ec269e47ae9}\label{main_8c_a98c763adfeea8e9831c46ec269e47ae9}} 
+\#define {\bfseries E\+R\+R\+\_\+\+OK}~0
+\item 
+\mbox{\Hypertarget{main_8c_a21caf3fc7bdf01b7711e806967a24d5a}\label{main_8c_a21caf3fc7bdf01b7711e806967a24d5a}} 
+\#define {\bfseries E\+R\+R\+\_\+\+R\+DY}~-\/1
+\item 
+\mbox{\Hypertarget{main_8c_ad3cd03b8a06b9a22932c03964ce3f64b}\label{main_8c_ad3cd03b8a06b9a22932c03964ce3f64b}} 
+\#define {\bfseries E\+R\+R\+\_\+\+C\+O\+NF}~-\/2
+\item 
+\mbox{\Hypertarget{main_8c_a6423a880df59733d2d9b509c7718d3a9}\label{main_8c_a6423a880df59733d2d9b509c7718d3a9}} 
+\#define {\bfseries S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}~1024
+\item 
+\mbox{\Hypertarget{main_8c_a457640dd283908c5f2de058fb361cfd2}\label{main_8c_a457640dd283908c5f2de058fb361cfd2}} 
+\#define {\bfseries thread\+\_\+\+B\+U\+T\+\_\+prio}~3
+\item 
+\mbox{\Hypertarget{main_8c_abef0fb4925a86936d1fd80f3990204e7}\label{main_8c_abef0fb4925a86936d1fd80f3990204e7}} 
+\#define {\bfseries thread\+\_\+\+L\+E\+D\+\_\+prio}~3
+\item 
+\mbox{\Hypertarget{main_8c_a0b5f5c0df45c57192f98dd6920f7cef7}\label{main_8c_a0b5f5c0df45c57192f98dd6920f7cef7}} 
+\#define {\bfseries thread\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+N\+U\+\_\+prio}~2
+\item 
+\mbox{\Hypertarget{main_8c_a24a4fd695bee65cd2226c7cff3ecd421}\label{main_8c_a24a4fd695bee65cd2226c7cff3ecd421}} 
+\#define {\bfseries thread\+\_\+\+T\+E\+M\+P\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+prio}~3
+\item 
+\mbox{\Hypertarget{main_8c_af6ef1e5d42083c9213f88aafa06ddbcc}\label{main_8c_af6ef1e5d42083c9213f88aafa06ddbcc}} 
+\#define {\bfseries thread\+\_\+\+B\+U\+T\+\_\+period}~200
+\item 
+\mbox{\Hypertarget{main_8c_a746704431ccd9761041814eabd953dbc}\label{main_8c_a746704431ccd9761041814eabd953dbc}} 
+\#define {\bfseries thread\+\_\+\+L\+E\+D\+\_\+period}~200
+\item 
+\mbox{\Hypertarget{main_8c_a60f76f9270e51535abb1027dcb645445}\label{main_8c_a60f76f9270e51535abb1027dcb645445}} 
+\#define {\bfseries thread\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+N\+U\+\_\+period}~200
+\item 
+\mbox{\Hypertarget{main_8c_ae0c5bba268ee751eeea5e52f397d9113}\label{main_8c_ae0c5bba268ee751eeea5e52f397d9113}} 
+\#define {\bfseries thread\+\_\+\+T\+E\+M\+P\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+period}~200
+\item 
+\mbox{\Hypertarget{main_8c_a630686ccbe0cb17e592951055a5da582}\label{main_8c_a630686ccbe0cb17e592951055a5da582}} 
+\#define {\bfseries R\+X\+B\+U\+F\+\_\+\+S\+I\+ZE}~10
+\item 
+\mbox{\Hypertarget{main_8c_ab6426fc74901f4fbec94862ebb672b81}\label{main_8c_ab6426fc74901f4fbec94862ebb672b81}} 
+\#define {\bfseries R\+X\+\_\+\+T\+I\+M\+E\+O\+UT}~1000
+\item 
+\mbox{\Hypertarget{main_8c_a661852bec8ab9683d43ad02881c2f2b5}\label{main_8c_a661852bec8ab9683d43ad02881c2f2b5}} 
+\#define {\bfseries L\+E\+D0\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(led0)
+\item 
+\mbox{\Hypertarget{main_8c_ac8b7bbb65d5065e43a35775d9fc3e322}\label{main_8c_ac8b7bbb65d5065e43a35775d9fc3e322}} 
+\#define {\bfseries L\+E\+D1\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(led1)
+\item 
+\mbox{\Hypertarget{main_8c_a9014b2cb02041c926b50b6411232ee82}\label{main_8c_a9014b2cb02041c926b50b6411232ee82}} 
+\#define {\bfseries L\+E\+D2\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(led2)
+\item 
+\mbox{\Hypertarget{main_8c_ad5246f73682d98292ef7d7b038582700}\label{main_8c_ad5246f73682d98292ef7d7b038582700}} 
+\#define {\bfseries L\+E\+D3\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(led3)
+\item 
+\mbox{\Hypertarget{main_8c_aae95411f1701c6da6aee1d9cfd974513}\label{main_8c_aae95411f1701c6da6aee1d9cfd974513}} 
+\#define {\bfseries B\+U\+T0\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(sw0)
+\item 
+\mbox{\Hypertarget{main_8c_ad4ede373699c5e72c9bfb39773deb391}\label{main_8c_ad4ede373699c5e72c9bfb39773deb391}} 
+\#define {\bfseries B\+U\+T1\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(sw1)
+\item 
+\mbox{\Hypertarget{main_8c_a8c2121bb4a318cb9ed0a125e0400fe49}\label{main_8c_a8c2121bb4a318cb9ed0a125e0400fe49}} 
+\#define {\bfseries B\+U\+T2\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(sw2)
+\item 
+\mbox{\Hypertarget{main_8c_ad88fe5b9d4ddf47b3530bc588d86ce70}\label{main_8c_ad88fe5b9d4ddf47b3530bc588d86ce70}} 
+\#define {\bfseries B\+U\+T3\+\_\+\+N\+O\+DE}~D\+T\+\_\+\+A\+L\+I\+AS(sw3)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_afa9e27b807a21659b4fb6a594c090d46}\label{main_8c_afa9e27b807a21659b4fb6a594c090d46}} 
+{\bfseries K\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+F\+I\+NE} (thread\+\_\+\+B\+U\+T\+\_\+stack, S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE)
+\item 
+\mbox{\Hypertarget{main_8c_a65f812d08bf3c4218b35bc3eac17075b}\label{main_8c_a65f812d08bf3c4218b35bc3eac17075b}} 
+{\bfseries K\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+F\+I\+NE} (thread\+\_\+\+L\+E\+D\+\_\+stack, S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE)
+\item 
+\mbox{\Hypertarget{main_8c_a150c435ca76b5a61c0ea048ffef1c473}\label{main_8c_a150c435ca76b5a61c0ea048ffef1c473}} 
+{\bfseries K\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+F\+I\+NE} (thread\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+N\+U\+\_\+stack, S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE)
+\item 
+\mbox{\Hypertarget{main_8c_a73c448a29f6c0fb7fc826d4ca4550df2}\label{main_8c_a73c448a29f6c0fb7fc826d4ca4550df2}} 
+{\bfseries K\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+S\+T\+A\+C\+K\+\_\+\+D\+E\+F\+I\+NE} (thread\+\_\+\+T\+E\+M\+P\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+stack, S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE)
+\item 
+void \mbox{\hyperlink{main_8c_a6ff55005e46c140b0aacf0e1d1be7ea9}{thread\+\_\+\+B\+U\+T\+\_\+code}} (void $\ast$argA, void $\ast$argB, void $\ast$argC)
+\begin{DoxyCompactList}\small\item\em Thread function for button handling. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a70df06e0d187951f148547e8f5072b04}{thread\+\_\+\+L\+E\+D\+\_\+code}} (void $\ast$argA, void $\ast$argB, void $\ast$argC)
+\begin{DoxyCompactList}\small\item\em Thread function for L\+ED control. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_ac155e9c18e90737231901a215e46d24b}{thread\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+N\+U\+\_\+code}} (void $\ast$argA, void $\ast$argB, void $\ast$argC)
+\begin{DoxyCompactList}\small\item\em Thread function to print the menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_ac1f3deb982e70d02d34de168f939a5fd}{thread\+\_\+\+T\+E\+M\+P\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+code}} (void $\ast$argA, void $\ast$argB, void $\ast$argC)
+\begin{DoxyCompactList}\small\item\em Thread function for temperature sensor reading. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a4a74dfddd695a26a3eb98136490de01f}{H\+W\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Function to initialize the hardware. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a4ed278ed0c3ceca2fab2606a167495bf}\label{main_8c_a4ed278ed0c3ceca2fab2606a167495bf}} 
+void {\bfseries reset\+Cmd\+String} (void)
+\item 
+\mbox{\Hypertarget{main_8c_afbdfe0465dfd34a5f244fe41fa27c12a}\label{main_8c_afbdfe0465dfd34a5f244fe41fa27c12a}} 
+int {\bfseries cmd\+Processor} (void)
+\item 
+\mbox{\Hypertarget{main_8c_aeef5e88ff5a207e83ac21996c98d375d}\label{main_8c_aeef5e88ff5a207e83ac21996c98d375d}} 
+int {\bfseries new\+Cmd\+Char} (unsigned char new\+Char)
+\item 
+\mbox{\Hypertarget{main_8c_ab91d801ccd1d435bc499b3d8e4074202}\label{main_8c_ab91d801ccd1d435bc499b3d8e4074202}} 
+{\bfseries K\+\_\+\+M\+U\+T\+E\+X\+\_\+\+D\+E\+F\+I\+NE} (mutex)
+\item 
+void \mbox{\hyperlink{main_8c_ab4b2c1747e66383dfb0b5679887e1854}{button\+\_\+pressed}} (const struct device $\ast$dev, struct gpio\+\_\+callback $\ast$cb, uint32\+\_\+t pins)
+\begin{DoxyCompactList}\small\item\em Callback function for button presses. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct adc\+\_\+sequence {\bfseries sequence}
+\item 
+const struct uart\+\_\+config {\bfseries uart\+\_\+cfg}
+\item 
+\mbox{\Hypertarget{main_8c_a7dee997e1a185467314b43f216e2d5f9}\label{main_8c_a7dee997e1a185467314b43f216e2d5f9}} 
+const struct device $\ast$ {\bfseries uart} = D\+E\+V\+I\+C\+E\+\_\+\+D\+T\+\_\+\+G\+ET(D\+T\+\_\+\+N\+O\+D\+E\+L\+A\+B\+EL(uart0))
+\item 
+\mbox{\Hypertarget{main_8c_a95004f1d6778db098c7ff7626d96e3e5}\label{main_8c_a95004f1d6778db098c7ff7626d96e3e5}} 
+struct k\+\_\+thread {\bfseries thread\+\_\+\+B\+U\+T\+\_\+data}
+\item 
+\mbox{\Hypertarget{main_8c_aacf2a5b95a9fa0f5f4c4f26ec436b3de}\label{main_8c_aacf2a5b95a9fa0f5f4c4f26ec436b3de}} 
+struct k\+\_\+thread {\bfseries thread\+\_\+\+L\+E\+D\+\_\+data}
+\item 
+\mbox{\Hypertarget{main_8c_a8b33056e844c0dfa4e9194bd25a6169b}\label{main_8c_a8b33056e844c0dfa4e9194bd25a6169b}} 
+struct k\+\_\+thread {\bfseries thread\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+N\+U\+\_\+data}
+\item 
+\mbox{\Hypertarget{main_8c_a0f7547217d94240e8909cf3e9f517e35}\label{main_8c_a0f7547217d94240e8909cf3e9f517e35}} 
+struct k\+\_\+thread {\bfseries thread\+\_\+\+T\+E\+M\+P\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+data}
+\item 
+\mbox{\Hypertarget{main_8c_ab76251c50028b91457a11c5c23ad3fdb}\label{main_8c_ab76251c50028b91457a11c5c23ad3fdb}} 
+k\+\_\+tid\+\_\+t {\bfseries thread\+\_\+\+B\+U\+T\+\_\+tid}
+\item 
+\mbox{\Hypertarget{main_8c_aebff98eb8974f471416763410f9f72f2}\label{main_8c_aebff98eb8974f471416763410f9f72f2}} 
+k\+\_\+tid\+\_\+t {\bfseries thread\+\_\+\+L\+E\+D\+\_\+tid}
+\item 
+\mbox{\Hypertarget{main_8c_acf60ecee97ed8b8fe99db4a62e96495e}\label{main_8c_acf60ecee97ed8b8fe99db4a62e96495e}} 
+k\+\_\+tid\+\_\+t {\bfseries thread\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+N\+U\+\_\+tid}
+\item 
+\mbox{\Hypertarget{main_8c_aa2f47103a677a284634fff4444e4ba5c}\label{main_8c_aa2f47103a677a284634fff4444e4ba5c}} 
+k\+\_\+tid\+\_\+t {\bfseries thread\+\_\+\+T\+E\+M\+P\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+tid}
+\item 
+\mbox{\Hypertarget{main_8c_aa0cfba1df22fefe9ffbce5951a832da5}\label{main_8c_aa0cfba1df22fefe9ffbce5951a832da5}} 
+volatile int {\bfseries But0\+\_\+cb\+\_\+data} = 0
+\item 
+\mbox{\Hypertarget{main_8c_aecf4651ba125050545a5c75d30e6368b}\label{main_8c_aecf4651ba125050545a5c75d30e6368b}} 
+volatile int {\bfseries But1\+\_\+cb\+\_\+data} = 0
+\item 
+\mbox{\Hypertarget{main_8c_a198b0e51a40663f1ce38017c78a23cc3}\label{main_8c_a198b0e51a40663f1ce38017c78a23cc3}} 
+volatile int {\bfseries But2\+\_\+cb\+\_\+data} = 0
+\item 
+\mbox{\Hypertarget{main_8c_a81820b27fe6b31bf614b10656e962c69}\label{main_8c_a81820b27fe6b31bf614b10656e962c69}} 
+volatile int {\bfseries But3\+\_\+cb\+\_\+data} = 0
+\item 
+\mbox{\Hypertarget{main_8c_aa9548ca91577936f121406dcf87837b5}\label{main_8c_aa9548ca91577936f121406dcf87837b5}} 
+volatile int {\bfseries led0stat} = 0
+\item 
+\mbox{\Hypertarget{main_8c_a9d6da11a14301876f9735fdd04e43306}\label{main_8c_a9d6da11a14301876f9735fdd04e43306}} 
+volatile int {\bfseries led1stat} = 0
+\item 
+\mbox{\Hypertarget{main_8c_ac4a06c034e8cc4a56e105d1c41e705ba}\label{main_8c_ac4a06c034e8cc4a56e105d1c41e705ba}} 
+volatile int {\bfseries led2stat} = 0
+\item 
+\mbox{\Hypertarget{main_8c_a12a9a266b50618a60c286a99f1011581}\label{main_8c_a12a9a266b50618a60c286a99f1011581}} 
+volatile int {\bfseries led3stat} = 0
+\item 
+\mbox{\Hypertarget{main_8c_a02687004cdf74eab2616aa1909451816}\label{main_8c_a02687004cdf74eab2616aa1909451816}} 
+volatile int {\bfseries adc\+\_\+val\+\_\+\+R\+AW} = 0
+\item 
+\mbox{\Hypertarget{main_8c_abbd2c28d1a6ac1c20e6ccedee4071f1c}\label{main_8c_abbd2c28d1a6ac1c20e6ccedee4071f1c}} 
+volatile int {\bfseries adc\+\_\+value} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hardware control module using Zephyr OS with R\+T\+DB. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_ab4b2c1747e66383dfb0b5679887e1854}\label{main_8c_ab4b2c1747e66383dfb0b5679887e1854}} 
+\index{main.c@{main.c}!button\_pressed@{button\_pressed}}
+\index{button\_pressed@{button\_pressed}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{button\_pressed()}{button\_pressed()}}
+{\footnotesize\ttfamily void button\+\_\+pressed (\begin{DoxyParamCaption}\item[{const struct device $\ast$}]{dev,  }\item[{struct gpio\+\_\+callback $\ast$}]{cb,  }\item[{uint32\+\_\+t}]{pins }\end{DoxyParamCaption})}
+
+
+
+Callback function for button presses. 
+
+This function is called when a button is pressed and updates the status of the L\+E\+Ds based on the button pressed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & Pointer to the device structure \\
+\hline
+{\em cb} & Callback structure \\
+\hline
+{\em pins} & Pins to trigger the callback \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_a4a74dfddd695a26a3eb98136490de01f}\label{main_8c_a4a74dfddd695a26a3eb98136490de01f}} 
+\index{main.c@{main.c}!HWInit@{HWInit}}
+\index{HWInit@{HWInit}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{HWInit()}{HWInit()}}
+{\footnotesize\ttfamily int H\+W\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to initialize the hardware. 
+
+This function initializes the G\+P\+IO, U\+A\+RT, and A\+DC peripherals.
+
+\begin{DoxyReturn}{Returns}
+int Status code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Main function. 
+
+Initializes the hardware and starts the threads.
+
+\begin{DoxyReturn}{Returns}
+int Status code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_a6ff55005e46c140b0aacf0e1d1be7ea9}\label{main_8c_a6ff55005e46c140b0aacf0e1d1be7ea9}} 
+\index{main.c@{main.c}!thread\_BUT\_code@{thread\_BUT\_code}}
+\index{thread\_BUT\_code@{thread\_BUT\_code}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{thread\_BUT\_code()}{thread\_BUT\_code()}}
+{\footnotesize\ttfamily void thread\+\_\+\+B\+U\+T\+\_\+code (\begin{DoxyParamCaption}\item[{void $\ast$}]{argA,  }\item[{void $\ast$}]{argB,  }\item[{void $\ast$}]{argC }\end{DoxyParamCaption})}
+
+
+
+Thread function for button handling. 
+
+This thread periodically reads the state of the buttons.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argA} & Not used \\
+\hline
+{\em argB} & Not used \\
+\hline
+{\em argC} & Not used \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_a70df06e0d187951f148547e8f5072b04}\label{main_8c_a70df06e0d187951f148547e8f5072b04}} 
+\index{main.c@{main.c}!thread\_LED\_code@{thread\_LED\_code}}
+\index{thread\_LED\_code@{thread\_LED\_code}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{thread\_LED\_code()}{thread\_LED\_code()}}
+{\footnotesize\ttfamily void thread\+\_\+\+L\+E\+D\+\_\+code (\begin{DoxyParamCaption}\item[{void $\ast$}]{argA,  }\item[{void $\ast$}]{argB,  }\item[{void $\ast$}]{argC }\end{DoxyParamCaption})}
+
+
+
+Thread function for L\+ED control. 
+
+This thread periodically updates the state of the L\+E\+Ds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argA} & Not used \\
+\hline
+{\em argB} & Not used \\
+\hline
+{\em argC} & Not used \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_ac155e9c18e90737231901a215e46d24b}\label{main_8c_ac155e9c18e90737231901a215e46d24b}} 
+\index{main.c@{main.c}!thread\_PRINT\_MENU\_code@{thread\_PRINT\_MENU\_code}}
+\index{thread\_PRINT\_MENU\_code@{thread\_PRINT\_MENU\_code}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{thread\_PRINT\_MENU\_code()}{thread\_PRINT\_MENU\_code()}}
+{\footnotesize\ttfamily void thread\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+N\+U\+\_\+code (\begin{DoxyParamCaption}\item[{void $\ast$}]{argA,  }\item[{void $\ast$}]{argB,  }\item[{void $\ast$}]{argC }\end{DoxyParamCaption})}
+
+
+
+Thread function to print the menu. 
+
+This thread periodically prints the menu with the current state of the buttons, L\+E\+Ds and the A\+DC value for the temperature sensor
+
+
+\begin{DoxyParams}{Parameters}
+{\em argA} & Not used \\
+\hline
+{\em argB} & Not used \\
+\hline
+{\em argC} & Not used \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_ac1f3deb982e70d02d34de168f939a5fd}\label{main_8c_ac1f3deb982e70d02d34de168f939a5fd}} 
+\index{main.c@{main.c}!thread\_TEMP\_SENSOR\_code@{thread\_TEMP\_SENSOR\_code}}
+\index{thread\_TEMP\_SENSOR\_code@{thread\_TEMP\_SENSOR\_code}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{thread\_TEMP\_SENSOR\_code()}{thread\_TEMP\_SENSOR\_code()}}
+{\footnotesize\ttfamily void thread\+\_\+\+T\+E\+M\+P\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+code (\begin{DoxyParamCaption}\item[{void $\ast$}]{argA,  }\item[{void $\ast$}]{argB,  }\item[{void $\ast$}]{argC }\end{DoxyParamCaption})}
+
+
+
+Thread function for temperature sensor reading. 
+
+This thread periodically reads the A\+DC value, simulation a temperature sensor
+
+
+\begin{DoxyParams}{Parameters}
+{\em argA} & Not used \\
+\hline
+{\em argB} & Not used \\
+\hline
+{\em argC} & Not used \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8c_aa22745c5e6110f928ea7ed6dee16949c}\label{main_8c_aa22745c5e6110f928ea7ed6dee16949c}} 
+\index{main.c@{main.c}!sequence@{sequence}}
+\index{sequence@{sequence}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sequence}{sequence}}
+{\footnotesize\ttfamily struct adc\+\_\+sequence sequence}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .buffer = \&buf,}
+\DoxyCodeLine{        .buffer\_size = \textcolor{keyword}{sizeof}(buf),}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_acbbb8dc9e34f2cbd68792504dc18da81}\label{main_8c_acbbb8dc9e34f2cbd68792504dc18da81}} 
+\index{main.c@{main.c}!uart\_cfg@{uart\_cfg}}
+\index{uart\_cfg@{uart\_cfg}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{uart\_cfg}{uart\_cfg}}
+{\footnotesize\ttfamily const struct uart\+\_\+config uart\+\_\+cfg}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .baudrate = 115200,}
+\DoxyCodeLine{        .parity = UART\_CFG\_PARITY\_NONE,}
+\DoxyCodeLine{        .stop\_bits = UART\_CFG\_STOP\_BITS\_1,}
+\DoxyCodeLine{        .data\_bits = UART\_CFG\_DATA\_BITS\_8,}
+\DoxyCodeLine{        .flow\_ctrl = UART\_CFG\_FLOW\_CTRL\_NONE}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
